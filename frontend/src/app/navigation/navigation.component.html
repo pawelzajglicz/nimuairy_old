@@ -1,0 +1,17 @@
+<nav class="navigator">
+  <li class="nav-item" routerLinkActive="active" *ngIf="(accountService.isUserLoggedIn$ | async)">
+    <a class="nav-link" [routerLink]="['/wall']">Wall</a>
+  </li>
+  <li class="nav-item" routerLinkActive="active" *ngIf="(accountService.isUserLoggedIn$ | async)">
+    <a class="nav-link" [routerLink]="['/characters']">Characters</a>
+  </li>
+  <li class="nav-item" routerLinkActive="active" *ngIf="(accountService.isUserLoggedIn$ | async)">
+    <a class="nav-link" [routerLink]="['/map']">Map</a>
+  </li>
+  <li class="nav-item" routerLinkActive="active" *ngIf="(accountService.isUserLoggedIn$ | async)">
+    <a class="nav-link" [routerLink]="['/friends']">Friends</a>
+  </li>
+  <li *ngIf="(accountService.currentUser$ | async) === null" class="nav-item" routerLinkActive="active">
+    <a class="nav-link" [routerLink]="['/register']">Register</a>
+  </li>
+</nav>

@@ -1,6 +1,11 @@
-nimuairy:
-  jwtSecret: nimauirySecretKey
-  jwtExpirationMs: 86400000
+jwt:
+  expirationMs: 86400000
+  refreshExpirationMs: 86400000
+  secret: nimuairySecretKey
+
+server:
+  error:
+    include-stacktrace: never
 
 spring:
   datasource:

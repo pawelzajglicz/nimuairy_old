@@ -1,0 +1,83 @@
+<div class="form-block__container">
+  <div class="form-block__content">
+    <h3 class="form-block__title">Register</h3>
+
+    <form [formGroup]="registerForm" (ngSubmit)="register()" class="form">
+
+
+      <div class="form__field">
+        <label class="form__label" for="username">Username</label>
+        <div class="form__input-suite">
+          <span class="form__icon-container"><i class="fas fa-id-card form__input__icon"></i></span>
+          <input id="username"
+                 class="form__input"
+                 placeholder="Username"
+                 formControlName="username">
+        </div>
+        <span *ngIf="f['username'].errors && f['username'].errors['required'] && f['username'].touched" class="form__field__error">
+          Please enter a username
+        </span>
+      </div>
+
+      <div class="form__field">
+        <label class="form__label" for="email">Email</label>
+        <div class="form__input-suite">
+          <span class="form__icon-container"><i class="fas fa-envelope form__input__icon"></i></span>
+          <input id="email"
+                 class="form__input"
+                 type="text"
+                 placeholder="Email"
+                 formControlName="email">
+        </div>
+        <span *ngIf="f['email'].errors && f['email'].errors['required'] && f['email'].touched" class="form__field__error">
+          Please enter an email.
+        </span>
+        <span *ngIf="f['email'].errors && f['email'].errors['email'] && f['email'].touched" class="form__field__error">
+          Email must be a valid email address.
+        </span>
+      </div>
+
+      <div class="form__field">
+        <label class="form__label" for="password">Password</label>
+        <div class="form__input-suite">
+          <span class="form__icon-container"><i class="fas fa-lock form__input__icon"></i></span>
+          <input id="password"
+                 class="form__input"
+                 type="password"
+                 placeholder="Password"
+                 formControlName="password">
+        </div>
+        <span *ngIf="f['password'].errors && f['password'].errors['required'] && f['password'].touched" class="form__field__error">
+          Please enter a password.
+        </span>
+        <span *ngIf="f['password'].errors && f['password'].errors['minlength'] && f['password'].touched" class="form__field__error">
+          Password must be at least 6 characters
+        </span>
+      </div>
+
+      <div class="form__field">
+        <label class="form__label" for="confirm-password">Repeat password</label>
+        <div class="form__input-suite">
+          <span class="form__icon-container"><i class="fas fa-lock form__input__icon"></i></span>
+          <input id="confirm-password"
+                 class="form__input"
+                 type="password"
+                 placeholder="Confirm password"
+                 formControlName="confirmPassword">
+        </div>
+        <span *ngIf="f['confirmPassword'].errors && f['confirmPassword'].errors['required'] && f['confirmPassword'].touched" class="form__field__error">
+          Confirm Password is required
+        </span>
+        <span *ngIf="f['confirmPassword'].errors && f['confirmPassword'].errors['matching'] && f['confirmPassword'].touched" class="form__field__error">
+          Passwords must match
+        </span>
+      </div>
+
+      <button [disabled]="registerForm.invalid || showLoading" type="submit" name="button" class="form__submit form__submit--top-margin">
+        <i *ngIf="showLoading" class="fas fa-spinner fa-spin form__submit__spinner"></i>
+        <span *ngIf="showLoading">Loading...</span>
+        <span *ngIf="!showLoading">Register</span>
+      </button>
+    </form>
+  </div>
+</div>

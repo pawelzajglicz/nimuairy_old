@@ -1,0 +1,15 @@
+<h1 (click)="goToHome()" class="title">Nimuairy</h1>
+<nim-navigation></nim-navigation>
+
+<button *ngIf="(accountService.isUserLoggedIn$ | async); else login" class="menu"
+  mat-button
+  [matMenuTriggerFor]="menu">Welcome {{(accountService.currentUser$ | async)?.username}}
+  <i class="fas fa-chevron-down"></i></button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Edit Profile</button>
+  <button mat-menu-item (click)="logout()">Logout</button>
+</mat-menu>
+
+<ng-template #login>
+  <nim-login></nim-login>
+</ng-template>

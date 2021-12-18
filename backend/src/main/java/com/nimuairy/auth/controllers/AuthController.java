@@ -1,128 +1,86 @@
 package com.nimuairy.auth.controllers;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import javax.validation.Valid;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.nimuairy.auth.models.ERole;
-import com.nimuairy.auth.models.Role;
+import com.nimuairy.auth.exception.EmailTakenException;
+import com.nimuairy.auth.exception.ErrorMessage;
+import com.nimuairy.auth.exception.UsernameTakenException;
 import com.nimuairy.auth.models.User;
 import com.nimuairy.auth.payload.request.LoginRequest;
 import com.nimuairy.auth.payload.request.SignupRequest;
+import com.nimuairy.auth.payload.request.TokenRefreshRequest;
 import com.nimuairy.auth.payload.response.JwtResponse;
-import com.nimuairy.auth.payload.response.MessageResponse;
+import com.nimuairy.auth.payload.response.TokenRefreshResponse;
 import com.nimuairy.auth.repository.RoleRepository;
 import com.nimuairy.auth.repository.UserRepository;
 import com.nimuairy.auth.security.jwt.JwtUtils;
-import com.nimuairy.auth.security.services.UserDetailsImpl;
+import com.nimuairy.auth.security.services.RefreshTokenService;
+import com.nimuairy.auth.security.services.UserService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
+
+import javax.validation.Valid;
+import java.util.Date;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RestController
 @RequestMapping("/api/auth")
+@RequiredArgsConstructor
+@RestController
+@Slf4j
 public class AuthController {
 
-    final AuthenticationManager authenticationManager;
-    final JwtUtils jwtUtils;
-    final PasswordEncoder encoder;
-    final RoleRepository roleRepository;
-    final UserRepository userRepository;
+	final AuthenticationManager authenticationManager;
+	final JwtUtils jwtUtils;
+	final PasswordEncoder encoder;
+	final RefreshTokenService refreshTokenService;
+	final RoleRepository roleRepository;
+	final UserRepository userRepository;
+	final UserService userService;
 
-    public AuthController(AuthenticationManager authenticationManager, UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder encoder, JwtUtils jwtUtils) {
-        this.authenticationManager = authenticationManager;
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
-        this.encoder = encoder;
-        this.jwtUtils = jwtUtils;
-    }
+	@PostMapping("/signin")
+	public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
-    @PostMapping("/signin")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+		return ResponseEntity.ok(userService.loginUser(loginRequest));
+	}
 
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+	@PostMapping("/signup")
+	public ResponseEntity<User> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtUtils.generateJwtToken(authentication);
+		return ResponseEntity.ok(userService.registerUser(signUpRequest));
+	}
 
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        List<String> roles = userDetails.getAuthorities().stream()
-                .map(item -> item.getAuthority())
-                .collect(Collectors.toList());
 
-        return ResponseEntity.ok(new JwtResponse(jwt,
-                userDetails.getId(),
-                userDetails.getUsername(),
-                userDetails.getEmail(),
-                roles));
-    }
+	@PostMapping("/refreshtoken")
+	public ResponseEntity<TokenRefreshResponse> refreshtoken(@Valid @RequestBody TokenRefreshRequest request) {
 
-    @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-        if (userRepository.existsByName(signUpRequest.getUsername())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: Username is already taken!"));
-        }
+		return ResponseEntity.ok(refreshTokenService.refreshToken(request));
+	}
 
-        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: Email is already in use!"));
-        }
+	@ExceptionHandler({EmailTakenException.class})
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ErrorMessage emailTakenError(EmailTakenException exc, WebRequest request) {
 
-        // Create new user's account
-        User user = new User(signUpRequest.getUsername(),
-                signUpRequest.getEmail(),
-                encoder.encode(signUpRequest.getPassword()));
+		log.info("There was attempt to register at taken email address: {}" + exc.getEmail());
+		return new ErrorMessage(
+				HttpStatus.BAD_REQUEST.value(),
+				new Date(),
+				exc.getMessage(),
+				request.getDescription(false));
+	}
 
-        Set<String> strRoles = signUpRequest.getRole();
-        Set<Role> roles = new HashSet<>();
+	@ExceptionHandler({UsernameTakenException.class})
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ErrorMessage usernameTakenError(UsernameTakenException exc, WebRequest request) {
 
-        if (strRoles == null) {
-            Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            roles.add(userRole);
-        } else {
-            strRoles.forEach(role -> {
-                switch (role) {
-                    case "admin":
-                        Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(adminRole);
-
-                        break;
-                    case "mod":
-                        Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(modRole);
-
-                        break;
-                    default:
-                        Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(userRole);
-                }
-            });
-        }
-
-        user.setRoles(roles);
-        userRepository.save(user);
-
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
-    }
+		log.info("There was attempt to register at taken username: {}" + exc.getUsername());
+		return new ErrorMessage(
+				HttpStatus.BAD_REQUEST.value(),
+				new Date(),
+				exc.getMessage(),
+				request.getDescription(false));
+	}
 }

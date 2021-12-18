@@ -1,0 +1,23 @@
+<form #loginForm="ngForm" (ngSubmit)="login()" class="form form--horizontal">
+
+  <div class="form__input-suite">
+    <span class="form__icon-container"><i class="fas fa-id-card form__input__icon"></i></span>
+    <input name="username"
+           class="form__input"
+           placeholder="Username"
+           type="text"
+           [(ngModel)]="model.username">
+  </div>
+
+  <div class="form__input-suite">
+    <span class="form__icon-container"><i class="fas fa-lock form__input__icon"></i></span>
+
+    <input name="password"
+           class="form__input"
+           placeholder="Password"
+           type="password"
+           [(ngModel)]="model.password">
+  </div>
+
+  <button type="submit" class="form__submit">Login</button>
+</form>

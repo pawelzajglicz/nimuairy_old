@@ -1,0 +1,33 @@
+:host {
+  align-items: baseline;
+  border-bottom: var(--gray) 0.3em solid;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8em 4em 0 1em;
+}
+
+h1 {
+  color: var(--light-gray);
+  display: inline-block;
+  font-size: 64px;
+  margin: 0;
+}
+
+nim-navigation {
+  display: inline-block;
+}
+
+.menu {
+  background-color: var(--light-blue);
+  border: none;
+  border-radius: 0.4rem;
+  padding:  0.25rem 0.5rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.title:hover {
+  cursor: pointer;
+}
