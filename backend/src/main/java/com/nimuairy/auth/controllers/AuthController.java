@@ -5,6 +5,7 @@ import com.nimuairy.auth.exception.ErrorMessage;
 import com.nimuairy.auth.exception.UsernameTakenException;
 import com.nimuairy.auth.models.User;
 import com.nimuairy.auth.payload.request.LoginRequest;
+import com.nimuairy.auth.payload.request.CreateUserRequest;
 import com.nimuairy.auth.payload.request.SignupRequest;
 import com.nimuairy.auth.payload.request.TokenRefreshRequest;
 import com.nimuairy.auth.payload.response.JwtResponse;
@@ -20,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -54,6 +56,13 @@ public class AuthController {
 	public ResponseEntity<User> registerUser(@ApiParam(value = "signup request") @Valid @RequestBody SignupRequest signUpRequest) {
 
 		return ResponseEntity.ok(userService.registerUser(signUpRequest));
+	}
+
+	@PostMapping("/create-user")
+	@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+	public ResponseEntity<User> createUser(@ApiParam(value = "signup request") @Valid @RequestBody CreateUserRequest createUserRequest) {
+
+		return ResponseEntity.ok(userService.createUser(createUserRequest));
 	}
 
 
