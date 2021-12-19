@@ -7,27 +7,29 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { RegisterComponent } from './register/register.component';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { ServerErrorComponent } from './errors/server-error/server-error.component';
+import { HomeComponent } from './home/home.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { LoginComponent } from './login/login.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { NotificationModule } from './notification-module/notification.module';
+import { RegisterComponent } from './register/register.component';
+import { UnderConstructionComponent } from './under-construction/under-construction.component';
 import { UpperPanelComponent } from './upper-panel/upper-panel.component';
-import { ErrorInterceptor } from './interceptors/error.interceptor';
-import { NotFoundComponent } from './errors/not-found/not-found.component';
-import { ServerErrorComponent } from './errors/server-error/server-error.component';
-import { AuthInterceptor } from './interceptors/auth.interceptor';
-import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
     LoginComponent,
     NavigationComponent,
-    RegisterComponent,
-    UpperPanelComponent,
     NotFoundComponent,
+    RegisterComponent,
     ServerErrorComponent,
-    HomeComponent
+    UnderConstructionComponent,
+    UpperPanelComponent
   ],
   imports: [
     AppRoutingModule,
