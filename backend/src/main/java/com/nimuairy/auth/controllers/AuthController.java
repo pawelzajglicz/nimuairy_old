@@ -14,6 +14,8 @@ import com.nimuairy.auth.repository.UserRepository;
 import com.nimuairy.auth.security.jwt.JwtUtils;
 import com.nimuairy.auth.security.services.RefreshTokenService;
 import com.nimuairy.auth.security.services.UserService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -47,12 +49,12 @@ public class AuthController {
 		return ResponseEntity.ok(userService.loginUser(loginRequest));
 	}
 
+	@ApiOperation(value = "Register user", notes = "Endpoint for creating new users")
 	@PostMapping("/signup")
-	public ResponseEntity<User> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+	public ResponseEntity<User> registerUser(@ApiParam(value = "signup request") @Valid @RequestBody SignupRequest signUpRequest) {
 
 		return ResponseEntity.ok(userService.registerUser(signUpRequest));
 	}
-
 
 	@PostMapping("/refreshtoken")
 	public ResponseEntity<TokenRefreshResponse> refreshtoken(@Valid @RequestBody TokenRefreshRequest request) {
