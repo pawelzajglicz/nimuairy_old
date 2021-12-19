@@ -17,7 +17,6 @@ import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { HomeComponent } from './home/home.component';
-import { UnderConstructionComponent } from './under-construction/under-construction.component';
 
 @NgModule({
   declarations: [
@@ -28,8 +27,7 @@ import { UnderConstructionComponent } from './under-construction/under-construct
     UpperPanelComponent,
     NotFoundComponent,
     ServerErrorComponent,
-    HomeComponent,
-    UnderConstructionComponent
+    HomeComponent
   ],
   imports: [
     AppRoutingModule,

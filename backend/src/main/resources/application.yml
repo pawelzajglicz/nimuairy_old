@@ -24,6 +24,3 @@ spring:
   liquibase:
     change-log: classpath:/db/changelog/dbchangelog.xml
     default-schema: nimuairy
-
-  profiles:
-    active: dev
