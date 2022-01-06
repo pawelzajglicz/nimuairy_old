@@ -1,5 +1,6 @@
 package com.nimuairy.auth.security.services;
 
+import com.nimuairy.auth.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.nimuairy.auth.models.User;
-import com.nimuairy.auth.repository.UserRepository;
 
 @AllArgsConstructor
 @Service

@@ -3,6 +3,11 @@ jwt:
   refreshExpirationMs: 86400000
   secret: nimuairySecretKey
 
+management:
+  info:
+    git:
+      mode: full
+
 server:
   error:
     include-stacktrace: never
