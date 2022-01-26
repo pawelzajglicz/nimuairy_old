@@ -7,7 +7,7 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 public class JedisFactory {
-
+/*
 	@Value("${cache.redis.host}")
 	private static String host;
 
@@ -42,5 +42,5 @@ public class JedisFactory {
 
 	public static Jedis getConnection() {
 		return jedisPool.getResource();
-	}
+	}*/
 }

@@ -1,37 +1,23 @@
 package com.nimuairy.cache;
 
-
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 
-import redis.clients.jedis.Jedis;
-
+@AllArgsConstructor
 @Service
 public class CacheRepositoryImpl implements CacheRepository {
 
+	TicketRepository ticketRepository;
+
 	@Override
 	public void putTicket(String token, Long userId) {
-
-		try (Jedis jedis = JedisFactory.getConnection()) {
-
-			jedis.set(token, userId.toString());
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		ticketRepository.save(new Ticket(token, userId));
 	}
 
 	@Override
-	public Long getUserIdByAccessToken(String token) {
-
-		try (Jedis jedis = JedisFactory.getConnection()) {
-
-			return Long.parseLong(jedis.get(token));
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return null;
+	public Optional<Long> getUserIdByAccessToken(String token) {
+		return ticketRepository.findById(token).map(ticket -> ticket.getUserId());
 	}
 }

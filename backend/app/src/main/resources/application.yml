@@ -1,11 +1,3 @@
-cache:
-  redis:
-    host: localhost
-    port: 6379
-    timeout: 5000
-    time-to-live: 60
-    password:
-
 jwt:
   expirationMs: 604800000
   refreshExpirationMs: 604800000
@@ -52,3 +44,10 @@ spring:
 
   profiles:
     active: dev
+
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 60000
+    time-to-live: 60000
+    password:

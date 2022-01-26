@@ -20,6 +20,7 @@ import org.springframework.web.socket.handler.AbstractWebSocketHandler;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import java.io.IOException;
+import java.util.OptionalLong;
 
 @Component
 @AllArgsConstructor
@@ -75,7 +76,7 @@ public class WebSocketHandler extends AbstractWebSocketHandler {
 			String ticket = parameters[1];
 
 			Long senderUserId = 0L;
-			Long senderId = cacheRepository.getUserIdByAccessToken(ticket);
+			Long senderId = cacheRepository.getUserIdByAccessToken(ticket).orElseThrow(() -> new RuntimeException("User not found"));
 
 	/*		if(senderId == null) {
 				User sender = userRepository.findByToken(accessToken);
