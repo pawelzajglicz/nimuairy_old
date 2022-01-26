@@ -6,7 +6,12 @@
     <include file="ddl/03rolesTable.xml" relativeToChangelogFile="true"/>
     <include file="ddl/04usersRolesTable.xml" relativeToChangelogFile="true"/>
     <include file="ddl/05refreshTokenTable.xml" relativeToChangelogFile="true"/>
+    <include file="ddl/06contactsTable.xml" relativeToChangelogFile="true"/>
+    <include file="ddl/07conversationsTable.xml" relativeToChangelogFile="true"/>
+    <include file="ddl/08usersConversationsTable.xml" relativeToChangelogFile="true"/>
+    <include file="ddl/09messagesTable.xml" relativeToChangelogFile="true"/>
     <include file="dml/01usersRolesInsert.xml" relativeToChangelogFile="true"/>
     <include file="dml/02usersInsert.xml" relativeToChangelogFile="true"/>
+    <include file="dml/03contactsInsert.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

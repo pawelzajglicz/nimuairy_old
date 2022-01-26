@@ -2,7 +2,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http'
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {ReplaySubject} from 'rxjs';
-import {map} from 'rxjs/operators'
+import {map, tap} from 'rxjs/operators'
 import {environment} from 'src/environments/environment';
 import {User} from '../model/user';
 import {NotificationService} from '../notification-module/notification.service';
@@ -15,7 +15,7 @@ export class AccountService {
 
   private currentUserSource = new ReplaySubject<User>(1);
   currentUser$ = this.currentUserSource.asObservable();
-  isUserLoggedIn$ = this.currentUserSource.asObservable().pipe(map(user => !!user));
+  isUserLoggedIn$ = this.currentUserSource.asObservable().pipe(map(user => !!user && Object.keys(user).length));
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -23,14 +23,21 @@ export class AccountService {
   constructor(private http: HttpClient,
               private notificationService: NotificationService,
               private router: Router,
-              private tokenStorageService: TokenStorageService) { }
+              private tokenStorageService: TokenStorageService) {
+
+                const savedUser = this.tokenStorageService.getUser();
+                if (!!savedUser) {
+                  this.currentUserSource.next(savedUser);
+                }
+
+              }
 
   login(model: any) {
     return this.http.post<User>(environment.apiUrl + 'auth/signin', model).subscribe({
         next: (user: User) => {
-          this.tokenStorageService.saveToken(JSON.stringify(user.token));
-          this.tokenStorageService.saveRefreshToken(JSON.stringify(user.refreshToken));
-          this.tokenStorageService.saveUser(JSON.stringify(user));
+          this.tokenStorageService.saveToken(user.token);
+          this.tokenStorageService.saveRefreshToken(user.refreshToken);
+          this.tokenStorageService.saveUser(user);
           this.currentUserSource.next(user);
           this.router.navigateByUrl('/home');
         },

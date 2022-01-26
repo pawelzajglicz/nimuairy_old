@@ -1,5 +1,6 @@
 <notifier-container></notifier-container>
 <nim-under-construction></nim-under-construction>
+<nim-chat *ngIf="(accountService.isUserLoggedIn$ | async)"></nim-chat>
 
 <nim-upper-panel></nim-upper-panel>
 <div class="content">

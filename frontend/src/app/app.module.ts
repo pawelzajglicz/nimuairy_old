@@ -18,6 +18,9 @@ import { NotificationModule } from './notification-module/notification.module';
 import { RegisterComponent } from './register/register.component';
 import { UnderConstructionComponent } from './under-construction/under-construction.component';
 import { UpperPanelComponent } from './upper-panel/upper-panel.component';
+import { ChatComponent } from './chat/chat.component';
+import { ContactsListComponent } from './chat/contacts-list/contacts-list.component';
+import { ChatDialogComponent } from './chat/chat-dialog/chat-dialog.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { UpperPanelComponent } from './upper-panel/upper-panel.component';
     RegisterComponent,
     ServerErrorComponent,
     UnderConstructionComponent,
-    UpperPanelComponent
+    UpperPanelComponent,
+    ChatComponent,
+    ContactsListComponent,
+    ChatDialogComponent
   ],
   imports: [
     AppRoutingModule,
