@@ -12,7 +12,7 @@ export class HomeComponent implements AfterViewInit {
   ngAfterViewInit(): void {
 
 
-    const subject = webSocket('ws://localhost:8080/api/chat');
+    const subject = webSocket('ws://localhost:8080/api/messaging');
 
     subject.subscribe(
        msg => console.log('message received: ', msg), // Called whenever there is a message from the server.

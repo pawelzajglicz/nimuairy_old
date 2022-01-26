@@ -2,8 +2,8 @@ package com.nimuairy.cache;
 
 public interface CacheRepository {
 
-	void putAccessToken(String token, String userId);
+	void putTicket(String token, Long userId);
 
-	String getUserIdByAccessToken(String token);
+	Long getUserIdByAccessToken(String token);
 
 }

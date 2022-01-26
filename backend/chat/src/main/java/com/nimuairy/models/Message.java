@@ -1,4 +1,4 @@
-package com.nimuairy.model;
+package com.nimuairy.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

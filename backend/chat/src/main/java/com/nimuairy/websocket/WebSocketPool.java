@@ -1,4 +1,4 @@
-package com.nimuairy;
+package com.nimuairy.websocket;
 
 import org.springframework.web.socket.WebSocketSession;
 

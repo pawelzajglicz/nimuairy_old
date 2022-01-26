@@ -1,4 +1,4 @@
-package com.nimuairy.model;
+package com.nimuairy.models;
 
 import com.nimuairy.auth.models.User;
 import lombok.AllArgsConstructor;

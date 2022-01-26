@@ -10,11 +10,11 @@ import redis.clients.jedis.Jedis;
 public class CacheRepositoryImpl implements CacheRepository {
 
 	@Override
-	public void putAccessToken(String token, String userId) {
+	public void putTicket(String token, Long userId) {
 
 		try (Jedis jedis = JedisFactory.getConnection()) {
 
-			jedis.set(token, userId);
+			jedis.set(token, userId.toString());
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -22,11 +22,11 @@ public class CacheRepositoryImpl implements CacheRepository {
 	}
 
 	@Override
-	public String getUserIdByAccessToken(String token) {
+	public Long getUserIdByAccessToken(String token) {
 
 		try (Jedis jedis = JedisFactory.getConnection()) {
 
-			return jedis.get(token);
+			return Long.parseLong(jedis.get(token));
 
 		} catch (Exception e) {
 			e.printStackTrace();

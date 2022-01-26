@@ -1,4 +1,4 @@
-package com.nimuairy;
+package com.nimuairy.ticket;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

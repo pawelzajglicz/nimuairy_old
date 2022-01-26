@@ -1,4 +1,4 @@
-package com.nimuairy;
+package com.nimuairy.websocket;
 
 /*
 import com.endpoint.SpringKafkaMessaging.cache.respository.CacheRepository;
@@ -6,6 +6,10 @@ import com.endpoint.SpringKafkaMessaging.message.broker.MessageSender;
 import com.endpoint.SpringKafkaMessaging.persistent.model.User;
 import com.endpoint.SpringKafkaMessaging.persistent.repository.UserRepository;
 import org.json.JSONObject;*/
+import com.nimuairy.MessageHandler;
+import com.nimuairy.cache.CacheRepository;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.BinaryMessage;
@@ -18,15 +22,16 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import java.io.IOException;
 
 @Component
+@AllArgsConstructor
 public class WebSocketHandler extends AbstractWebSocketHandler {
 
-	/*@Autowired
-	CacheRepository cacheRepository;
 
+	final static String TICKET = "ticket";
+	CacheRepository cacheRepository;
+/*
 	@Autowired
 	UserRepository userRepository;*/
 
-	@Autowired
 	MessageHandler messageHandler;
 
 
@@ -65,14 +70,14 @@ public class WebSocketHandler extends AbstractWebSocketHandler {
 		var uri = session.getUri();
 
 		String parameters[] = session.getUri().getQuery().split("=");
-/*
-		if(parameters.length == 2 && parameters[0].equals("accessToken")) {
-			String accessToken = parameters[1];
+
+		if (parameters.length == 2 && parameters[0].equals(TICKET)) {
+			String ticket = parameters[1];
 
 			Long senderUserId = 0L;
-			String senderId = cacheRepository.getUserIdByAccessToken(accessToken);
+			Long senderId = cacheRepository.getUserIdByAccessToken(ticket);
 
-			if(senderId == null) {
+	/*		if(senderId == null) {
 				User sender = userRepository.findByToken(accessToken);
 				if(sender != null) {
 					senderUserId = sender.getUserId();
@@ -82,14 +87,14 @@ public class WebSocketHandler extends AbstractWebSocketHandler {
 			}
 			if (senderUserId == 0L) {
 				return;
-			}
+			}*/
 
 			messageHandler.addSessionToPool(senderUserId, session);
 		}
 		else {
 			session.close();
 		}
-*/
+
 	}
 /*
 	@Autowired
