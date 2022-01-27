@@ -25,7 +25,7 @@ public class MessageReceiver {
 
 		JSONObject jsonObject = new JSONObject(message);
 
-		if (WebSocketPool.websockets.get(jsonObject.getString("sendTo")) != null) {
+	/*	if (WebSocketPool.websockets.get(jsonObject.getString("sendTo")) != null) {
 
 			String accessToken = jsonObject.getString("accessToken");
 			Long sendTo = Long.parseLong(jsonObject.getString("sendTo"));
@@ -33,6 +33,6 @@ public class MessageReceiver {
 
 			messageService.sendMessage(accessToken, sendTo, msg);
 
-		}
+		}*/
 	}
 }

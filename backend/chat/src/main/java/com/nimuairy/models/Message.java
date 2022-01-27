@@ -24,6 +24,9 @@ public class Message implements Serializable {
 	@Column(name="conversation_id")
 	private Long conversationId;
 
+	@Column(name="sender_id")
+	private Long senderId;
+
 	@Column(name="content")
 	private String content;
 

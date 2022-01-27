@@ -13,6 +13,9 @@
             <column name="conversation_id" type="int8">
                 <constraints nullable="false"/>
             </column>
+            <column name="sender_id" type="int8">
+                <constraints nullable="false"/>
+            </column>
             <column name="content" type="varchar(2000)">
                 <constraints nullable="false"/>
             </column>
@@ -30,6 +33,10 @@
         <addForeignKeyConstraint baseColumnNames="conversation_id" baseTableName="messages"
                                  constraintName="FK_message_conversation" deferrable="false"
                                  initiallyDeferred="false" referencedColumnNames="id" referencedTableName="conversations"/>
+
+        <addForeignKeyConstraint baseColumnNames="sender_id" baseTableName="messages"
+                                 constraintName="FK_message_user" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users"/>
     </changeSet>
 
 </databaseChangeLog>

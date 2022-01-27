@@ -1,25 +1,26 @@
 package com.nimuairy;
 
 import com.nimuairy.models.Message;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+@AllArgsConstructor
 @Service
 @Slf4j
 public class MessageServiceImpl implements MessageService {
 
-/*
-	@Autowired
-	MessageRepository messageRepository;
 
+	MessageRepository messageRepository;
+/*
 	@Autowired
 	CacheRepository cacheRepository;
 
 	@Autowired
 	UserRepository userRepository;*/
 
-	@Autowired
 	MessageHandler messageHandler;
 
 	@Override
@@ -49,6 +50,11 @@ public class MessageServiceImpl implements MessageService {
 		} catch (IOException e) {
 			return;
 		}*/
+	}
+
+	@Override
+	public Page<Message> getLastMessages(Long conversationId, int lastMessagesNumber) {
+		return messageRepository.findByConversationIdOrderBySentAt(conversationId, PageRequest.of(0, lastMessagesNumber));
 	}
 
 

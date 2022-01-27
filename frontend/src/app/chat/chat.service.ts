@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { Ticket } from './ticket';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,10 @@ export class ChatService {
   constructor(private http: HttpClient) { }
 
   getChatTicket() {
-    return this.http.get<string>(this.baseUrl + 'ticket');
+    return this.http.get<Ticket>(this.baseUrl + 'ticket');
+  }
+
+  loadConversationWithUser(interlocutorId: number) {
+    return this.http.get<any>(this.baseUrl + `conversation?interlocutorId=${interlocutorId}`);
   }
 }

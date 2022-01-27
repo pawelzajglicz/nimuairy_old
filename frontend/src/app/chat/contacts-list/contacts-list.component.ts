@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { User } from 'src/app/model/user';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
+import {User} from 'src/app/model/user';
 
 @Component({
   selector: 'nim-contacts-list',
@@ -7,7 +7,7 @@ import { User } from 'src/app/model/user';
   styleUrls: ['./contacts-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ContactsListComponent implements OnInit {
+export class ContactsListComponent {
 
 
   @Input() contacts: User[];
@@ -15,13 +15,7 @@ export class ContactsListComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-   // setInterval(() => console.log(this.contacts), 3000);
-  }
-
   emitStartConversation(userId: number) {
-    console.log('start emitStartConversation with: ', userId);
     this.chosenToStartConversation.emit(userId);
   }
-
 }

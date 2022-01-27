@@ -13,5 +13,6 @@
     <include file="dml/01usersRolesInsert.xml" relativeToChangelogFile="true"/>
     <include file="dml/02usersInsert.xml" relativeToChangelogFile="true"/>
     <include file="dml/03contactsInsert.xml" relativeToChangelogFile="true"/>
+    <include file="dml/04conversationsInsert.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

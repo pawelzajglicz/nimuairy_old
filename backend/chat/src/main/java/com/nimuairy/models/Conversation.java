@@ -16,7 +16,7 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="conversations")
+@Table(name = "conversations", schema = "nimuairy")
 public class Conversation implements Serializable {
 
 	@Id
@@ -25,8 +25,8 @@ public class Conversation implements Serializable {
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "users_conversations",
-			joinColumns = @JoinColumn(name = "user_id"),
-			inverseJoinColumns = @JoinColumn(name = "conversation_id"))
+			joinColumns = @JoinColumn(name = "conversation_id"),
+			inverseJoinColumns = @JoinColumn(name = "user_id"))
 	Set<User> participants;
 
 	@Column(name = "createdAt")

@@ -1,0 +1,183 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="dml4a" author="pawel">
+        <insert tableName="conversations">
+            <column name="id" valueComputed="1"/>
+            <column name="created_at" value="2020-10-06 15:01:10"/>
+        </insert>
+        <insert tableName="conversations">
+            <column name="id" valueComputed="2"/>
+            <column name="created_at" value="2020-10-06 17:08:10"/>
+        </insert>
+        <insert tableName="conversations">
+            <column name="id" valueComputed="3"/>
+            <column name="created_at" value="2020-10-06 15:01:22"/>
+        </insert>
+        <insert tableName="conversations">
+            <column name="id" valueComputed="4"/>
+            <column name="created_at" value="2020-10-08 15:01:10"/>
+        </insert>
+        <insert tableName="conversations">
+            <column name="id" valueComputed="5"/>
+            <column name="created_at" value="2020-10-06 15:01:10"/>
+        </insert>
+        <insert tableName="conversations">
+            <column name="id" valueComputed="6"/>
+            <column name="created_at" value="2022-01-08 07:01:10"/>
+        </insert>
+        <insert tableName="conversations">
+            <column name="id" valueComputed="7"/>
+            <column name="created_at" value="2021-01-28 09:55:01"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="dml4b" author="pawel">
+        <insert tableName="users_conversations">
+            <column name="conversation_id" value="1"/>
+            <column name="user_id" valueComputed="3"/>
+        </insert>
+        <insert tableName="users_conversations">
+            <column name="conversation_id" value="1"/>
+            <column name="user_id" valueComputed="4"/>
+        </insert>
+        <insert tableName="users_conversations">
+            <column name="conversation_id" value="2"/>
+            <column name="user_id" valueComputed="3"/>
+        </insert>
+        <insert tableName="users_conversations">
+            <column name="conversation_id" value="2"/>
+            <column name="user_id" valueComputed="5"/>
+        </insert>
+        <insert tableName="users_conversations">
+            <column name="conversation_id" value="3"/>
+            <column name="user_id" valueComputed="3"/>
+        </insert>
+        <insert tableName="users_conversations">
+            <column name="conversation_id" value="3"/>
+            <column name="user_id" valueComputed="6"/>
+        </insert>
+        <insert tableName="users_conversations">
+            <column name="conversation_id" value="4"/>
+            <column name="user_id" valueComputed="3"/>
+        </insert>
+        <insert tableName="users_conversations">
+            <column name="conversation_id" value="4"/>
+            <column name="user_id" valueComputed="7"/>
+        </insert>
+        <insert tableName="users_conversations">
+            <column name="conversation_id" value="5"/>
+            <column name="user_id" valueComputed="4"/>
+        </insert>
+        <insert tableName="users_conversations">
+            <column name="conversation_id" value="5"/>
+            <column name="user_id" valueComputed="5"/>
+        </insert>
+        <insert tableName="users_conversations">
+            <column name="conversation_id" value="6"/>
+            <column name="user_id" valueComputed="4"/>
+        </insert>
+        <insert tableName="users_conversations">
+            <column name="conversation_id" value="6"/>
+            <column name="user_id" valueComputed="6"/>
+        </insert>
+        <insert tableName="users_conversations">
+            <column name="conversation_id" value="7"/>
+            <column name="user_id" valueComputed="5"/>
+        </insert>
+        <insert tableName="users_conversations">
+            <column name="conversation_id" value="7"/>
+            <column name="user_id" valueComputed="6"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="dml4c" author="pawel">
+        <insert tableName="messages">
+            <column name="id" value="1"/>
+            <column name="conversation_id" value="1"/>
+            <column name="sender_id" value="3"/>
+            <column name="content" value="Hi"/>
+            <column name="sent_at" value="2021-01-28 09:55:01"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="2"/>
+            <column name="conversation_id" value="1"/>
+            <column name="sender_id" value="4"/>
+            <column name="content" value="Hello there"/>
+            <column name="sent_at" value="2021-01-28 09:55:10"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="3"/>
+            <column name="conversation_id" value="1"/>
+            <column name="sender_id" value="3"/>
+            <column name="content" value="General Kenobi..."/>
+            <column name="sent_at" value="2021-01-28 09:55:18"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="4"/>
+            <column name="conversation_id" value="1"/>
+            <column name="sender_id" value="3"/>
+            <column name="content" value="ęśąćż"/>
+            <column name="sent_at" value="2021-01-28 09:55:20"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="5"/>
+            <column name="conversation_id" value="1"/>
+            <column name="sender_id" value="4"/>
+            <column name="content" value="Luke"/>
+            <column name="sent_at" value="2021-01-28 09:55:24"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="6"/>
+            <column name="conversation_id" value="1"/>
+            <column name="sender_id" value="4"/>
+            <column name="content" value="I am your father"/>
+            <column name="sent_at" value="2021-01-28 09:55:35"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="7"/>
+            <column name="conversation_id" value="1"/>
+            <column name="sender_id" value="3"/>
+            <column name="content" value="No, I am your father"/>
+            <column name="sent_at" value="2021-01-28 09:55:40"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="8"/>
+            <column name="conversation_id" value="1"/>
+            <column name="sender_id" value="3"/>
+            <column name="content" value="All we have to decide is what to do with the time that is given us"/>
+            <column name="sent_at" value="2021-01-28 09:55:48"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="9"/>
+            <column name="conversation_id" value="1"/>
+            <column name="sender_id" value="3"/>
+            <column name="content" value="Even the smallest person can change the course of the future"/>
+            <column name="sent_at" value="2021-01-28 09:55:52"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="10"/>
+            <column name="conversation_id" value="1"/>
+            <column name="sender_id" value="4"/>
+            <column name="content" value="I would rather share one lifetime with you than face all the ages of this world alone"/>
+            <column name="sent_at" value="2021-01-28 09:56:18"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="11"/>
+            <column name="conversation_id" value="1"/>
+            <column name="sender_id" value="4"/>
+            <column name="content" value="Who knows? Have patience. Go where you must go, and hope!"/>
+            <column name="sent_at" value="2021-01-28 09:56:27"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="12"/>
+            <column name="conversation_id" value="1"/>
+            <column name="sender_id" value="3"/>
+            <column name="content" value="You are the luckiest, the canniest, and the most reckless man I ever knew."/>
+            <column name="sent_at" value="2021-01-28 09:57:19"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
