@@ -20,7 +20,7 @@ public class MessageReceiver {
 	@Autowired
 	MessageHandler messageHandler;
 
-	@KafkaListener(topics = "SEND_MESSAGE")
+	@KafkaListener(topics = "messages")
 	public void messagesSendToUser(@Payload String message, @Headers MessageHeaders headers) {
 
 		JSONObject jsonObject = new JSONObject(message);

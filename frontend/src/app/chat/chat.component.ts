@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
+import { webSocket } from 'rxjs/webSocket';
 import { User } from '../model/user';
 import { AccountService } from '../services/account.service';
 import { ContactsService } from '../social-network/contacts.service';
@@ -47,9 +48,25 @@ export class ChatComponent implements OnInit, OnDestroy {
     console.log('start conversation with: ', event);
     this.chatService.getChatTicket().subscribe((ticket: string) => {
       console.log({ticket})
+
+      //@ts-ignore
+      const subject = webSocket('ws://localhost:8080/api/messaging?ticket=' + ticket.ticket);
+
+      subject.subscribe(
+         msg => console.log('message received: ', msg), // Called whenever there is a message from the server.
+         err => console.log(err), // Called if at any point WebSocket API signals some kind of error.
+         () => console.log('complete') // Called when connection is closed (for whatever reason).
+       );
+
+       setTimeout(() => {
+        subject.next({message: 'some message'});
+        console.log('sended')
+       }, 5000)
+
     },
     err => console.log(err))
   }
+
 
   @HostListener('click', ['$event'])
   clickInside(event: any) {

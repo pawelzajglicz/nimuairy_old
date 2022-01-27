@@ -1,5 +1,7 @@
 package com.nimuairy.websocket;
 import com.nimuairy.MessageHandler;
+import com.nimuairy.MessageSender;
+import com.nimuairy.auth.security.services.UserService;
 import com.nimuairy.cache.CacheRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -13,14 +15,14 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer  {
 
-
 	CacheRepository cacheRepository;
-
 	MessageHandler messageHandler;
+	MessageSender messageSender;
+	UserService userService;
 
 	@Bean
 	public WebSocketHandler myMessageHandler() {
-		return new WebSocketHandler(cacheRepository, messageHandler);
+		return new WebSocketHandler(cacheRepository, messageHandler, messageSender, userService);
 	}
 
 	@Override

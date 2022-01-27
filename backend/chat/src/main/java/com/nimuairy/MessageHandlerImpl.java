@@ -34,14 +34,11 @@ public class MessageHandlerImpl implements MessageHandler {
 		Set<WebSocketSession> userSessions = WebSocketPool.websockets.get(userId);
 
 		if (userSessions == null) {
-			System.out.println("null sessions");
 			return;
 		}
 
-		System.out.println("ppp" + userSessions.size());
 		TextMessage textMessage = new TextMessage(message);
 		for (WebSocketSession session : userSessions) {
-			System.out.println("ppp");
 			session.sendMessage(textMessage);
 		}
 
@@ -52,11 +49,7 @@ public class MessageHandlerImpl implements MessageHandler {
 		Set<WebSocketSession> userSessions = WebSocketPool.websockets.get(userId);
 
 		if (userSessions != null) {
-			for (WebSocketSession sessionItem : userSessions) {
-				if (sessionItem.equals(session)) {
-					userSessions.remove(session);
-				}
-			}
+			userSessions.remove(session);
 		}
 		WebSocketPool.websockets.put(userId, userSessions);
 	}
