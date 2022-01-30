@@ -14,7 +14,7 @@ import java.time.Instant;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="messages")
+@Table(name = "messages", schema = "nimuairy")
 public class Message implements Serializable {
 
 	@Id

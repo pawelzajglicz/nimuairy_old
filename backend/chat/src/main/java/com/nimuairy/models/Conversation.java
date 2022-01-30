@@ -25,8 +25,9 @@ public class Conversation implements Serializable {
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "users_conversations",
-			joinColumns = @JoinColumn(name = "conversation_id"),
-			inverseJoinColumns = @JoinColumn(name = "user_id"))
+			   schema = "nimuairy",
+			   joinColumns = @JoinColumn(name = "conversation_id"),
+			   inverseJoinColumns = @JoinColumn(name = "user_id"))
 	Set<User> participants;
 
 	@Column(name = "createdAt")

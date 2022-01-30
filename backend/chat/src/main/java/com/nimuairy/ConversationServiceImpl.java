@@ -26,6 +26,6 @@ public class ConversationServiceImpl {
 		Conversation conversation = conversationRepository.findConversationIdByInterlocutors(Set.of(interlocutorId, userService.currentUser().getId()));
 		Page<Message> messages = messageService.getLastMessages(conversation.getId(), LAST_MESSAGES_NUMBER);
 
-		return new LoadConversationDto(conversation.getId(), messages.getContent(), messages.getTotalElements());
+		return new LoadConversationDto(conversation.getId(), conversation.getParticipants(), messages.getContent(), messages.getTotalElements());
 	}
 }

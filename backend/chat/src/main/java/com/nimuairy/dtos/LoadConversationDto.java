@@ -1,9 +1,21 @@
 package com.nimuairy.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.nimuairy.auth.models.User;
 import com.nimuairy.models.Message;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 import java.util.List;
+import java.util.Set;
 
-public record LoadConversationDto(Long conversationId, List<Message> lastMessages, Long totalMessages) {
+@AllArgsConstructor
+@Data
+public class LoadConversationDto {
 
+	private Long conversationId;
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Set<User> participants;
+	private List<Message> messages;
+	private Long totalMessages;
 }

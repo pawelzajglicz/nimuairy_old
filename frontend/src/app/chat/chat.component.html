@@ -1,11 +1,12 @@
-<p>chat works!</p>
-<div *ngIf="accountService.currentUser$ | async as user">
-  <div>
-      {{user.username}}
-      <button (click)="showContactsList()">New conversation</button>
+<div *ngIf="accountService.currentUser$ | async as user"
+     class="chat-container">
+  <div class="chat-contacts">
+      <button class="chat-add-button"
+              (click)="showContactsList()">+</button>
       <nim-contacts-list *ngIf="isContactsListVisible"
         [contacts]="contacts"
-        (chosenToStartConversation)="startConversation($event);"
+        (chosenToStartConversation)="startConversation($event)"
       ></nim-contacts-list>
   </div>
+    <nim-conversation-window *ngFor="let conversation of conversations" [conversation]="conversation"></nim-conversation-window>
 </div>

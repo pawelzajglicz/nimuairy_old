@@ -1,7 +1,7 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http'
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
-import {ReplaySubject} from 'rxjs';
+import {BehaviorSubject, ReplaySubject} from 'rxjs';
 import {map, tap} from 'rxjs/operators'
 import {environment} from 'src/environments/environment';
 import {User} from '../model/user';
@@ -13,9 +13,9 @@ import {TokenStorageService} from '../services/token-storage.service';
 })
 export class AccountService {
 
-  private currentUserSource = new ReplaySubject<User>(1);
+  private currentUserSource = new BehaviorSubject<User>(null);
   currentUser$ = this.currentUserSource.asObservable();
-  isUserLoggedIn$ = this.currentUserSource.asObservable().pipe(map(user => !!user && Object.keys(user).length));
+  isUserLoggedIn$ = this.currentUserSource.asObservable().pipe(map(user => !!user && Object.keys(user).length > 0));
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -30,7 +30,12 @@ export class AccountService {
                   this.currentUserSource.next(savedUser);
                 }
 
+                setInterval(() => console.log(this.currentUserSource.value), 3000)
               }
+
+  getCurrentUser() {
+    return this.currentUserSource.value;
+  }
 
   login(model: any) {
     return this.http.post<User>(environment.apiUrl + 'auth/signin', model).subscribe({

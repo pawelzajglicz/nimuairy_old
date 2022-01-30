@@ -20,7 +20,9 @@ import { UnderConstructionComponent } from './under-construction/under-construct
 import { UpperPanelComponent } from './upper-panel/upper-panel.component';
 import { ChatComponent } from './chat/chat.component';
 import { ContactsListComponent } from './chat/contacts-list/contacts-list.component';
-import { ChatDialogComponent } from './chat/chat-dialog/chat-dialog.component';
+import { ConversationWindowComponent } from './chat/conversation-window/conversation-window.component';
+import { ExtractOtherNamesPipe } from './chat/conversation-window/extract-other-names.pipe';
+import { MessagesListComponent } from './chat/conversation-window/messages-list/messages-list.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { ChatDialogComponent } from './chat/chat-dialog/chat-dialog.component';
     UpperPanelComponent,
     ChatComponent,
     ContactsListComponent,
-    ChatDialogComponent
+    ConversationWindowComponent,
+    ExtractOtherNamesPipe,
+    MessagesListComponent
   ],
   imports: [
     AppRoutingModule,

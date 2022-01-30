@@ -21,11 +21,6 @@ public class ContactsController {
 	@GetMapping("/{userId}")
 	public ResponseEntity<Set<SimpleUserInfo>> getUserContacts(@PathVariable Long userId) {
 
-
-		var result = contactsService.getUserContacts(userId);
-		var result2 = SecurityContextHolder.getContext().getAuthentication().getPrincipal();;
-
-		System.out.println("contacts " + userId + " " + result.size());
-		return ResponseEntity.ok(result);
+		return ResponseEntity.ok(contactsService.getUserContacts(userId));
 	}
 }

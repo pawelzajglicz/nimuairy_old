@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
@@ -7,7 +7,8 @@ import { User } from '../model/user';
 import { AccountService } from '../services/account.service';
 import { ContactsService } from '../social-network/contacts.service';
 import { ChatService } from './chat.service';
-import { Ticket } from './ticket';
+import { Conversation } from './models/conversation';
+import { Ticket } from './models/ticket';
 
 @Component({
   selector: 'nim-chat',
@@ -18,13 +19,15 @@ import { Ticket } from './ticket';
 export class ChatComponent implements OnInit, OnDestroy {
 
   contacts: User[] = [];
+  conversations: Conversation[] = []
   isContactsListVisible = false;
   private destroyNotifier = new Subject<void>();
   private webSocket: WebSocketSubject<void>;
 
   constructor(public accountService: AccountService,
-    private chatService: ChatService,
-    public contactsService: ContactsService) { }
+              private changeDetectorRef: ChangeDetectorRef,
+              private chatService: ChatService,
+              public contactsService: ContactsService) { }
 
   ngOnInit(): void {
     this.accountService.currentUser$.pipe(
@@ -49,11 +52,17 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.isContactsListVisible = true;
   }
 
-  startConversation(interlocutorId: number) {
-    console.log('start conversation with: ', interlocutorId);
-    this.chatService.loadConversationWithUser(interlocutorId).subscribe(res => {
-      console.log(res);
+  startConversation(participiantId: number) {
+    console.log('start conversation with: ', participiantId);
+    if (this.isConversationWithUserNotLoaded(participiantId)) {
+
+    this.chatService.loadConversationWithUser(participiantId).subscribe((conversation: Conversation) => {
+      console.log(conversation);
+        this.conversations.push(conversation);
+        this.changeDetectorRef.markForCheck();
+
     })
+  }
    /* this.chatService.getChatTicket().subscribe((ticket: Ticket) => {
       console.log({ticket})
 
@@ -74,16 +83,20 @@ export class ChatComponent implements OnInit, OnDestroy {
     err => console.log(err))*/
   }
 
+  private isConversationWithUserNotLoaded(participiantId: number): boolean {
+    const conversationLoaded = this.conversations.find(c => c.participants.length === 2 &&
+                  c.participants.find(participiant => participiant.id === participiantId));
+      return !conversationLoaded;
+  }
+
 
   @HostListener('click', ['$event'])
   clickInside(event: any) {
-    console.log("clicked inside", event);
     event.stopPropagation();
   }
 
   @HostListener('document:click')
   clickOutside() {
-    console.log("clicked outside");
     this.isContactsListVisible = false;
   }
 
