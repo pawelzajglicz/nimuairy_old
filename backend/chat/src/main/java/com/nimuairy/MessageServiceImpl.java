@@ -54,9 +54,8 @@ public class MessageServiceImpl implements MessageService {
 
 	@Override
 	public Page<Message> getLastMessages(Long conversationId, int lastMessagesNumber) {
-		return messageRepository.findByConversationIdOrderBySentAt(conversationId, PageRequest.of(0, lastMessagesNumber));
+		return messageRepository.findByConversationIdOrderBySentAtDesc(conversationId, PageRequest.of(0, lastMessagesNumber));
 	}
-
 
 	private void storeMessageToUser(Message message) {
 	//	messageRepository.save(message);

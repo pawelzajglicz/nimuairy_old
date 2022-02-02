@@ -11,4 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface MessageRepository extends PagingAndSortingRepository<Message, Long> {
 
 	Page<Message> findByConversationIdOrderBySentAt(Long conversationId, Pageable pageable);
+	Page<Message> findByConversationIdOrderBySentAtDesc(Long conversationId, Pageable pageable);
 }

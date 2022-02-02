@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -24,8 +26,10 @@ public class ConversationServiceImpl {
 	public LoadConversationDto loadConversationWithUser(Long interlocutorId) {
 
 		Conversation conversation = conversationRepository.findConversationIdByInterlocutors(Set.of(interlocutorId, userService.currentUser().getId()));
-		Page<Message> messages = messageService.getLastMessages(conversation.getId(), LAST_MESSAGES_NUMBER);
+		Page<Message> messagesPage = messageService.getLastMessages(conversation.getId(), LAST_MESSAGES_NUMBER);
+		List<Message> messages = new ArrayList<>(messagesPage.getContent());
+		Collections.reverse(messages);
 
-		return new LoadConversationDto(conversation.getId(), conversation.getParticipants(), messages.getContent(), messages.getTotalElements());
+		return new LoadConversationDto(conversation.getId(), conversation.getParticipants(), messages, messagesPage.getTotalElements());
 	}
 }

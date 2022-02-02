@@ -1,4 +1,8 @@
-{{conversation | extractOtherNames}}
-<nim-messages-list [messages]="conversation.messages"
-                   [totalNumber]="conversation.totalMessages"></nim-messages-list>
+<div class="conversation-container">
 
+  <span>{{conversation | extractOtherNames}}</span>
+  <nim-messages-list [messages]="conversation.messages" [totalNumber]="conversation.totalMessages"></nim-messages-list>
+
+  <input>
+
+</div>

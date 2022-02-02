@@ -30,7 +30,7 @@ export class AccountService {
                   this.currentUserSource.next(savedUser);
                 }
 
-                setInterval(() => console.log(this.currentUserSource.value), 3000)
+             //   setInterval(() => console.log(this.currentUserSource.value), 3000)
               }
 
   getCurrentUser() {
@@ -38,7 +38,8 @@ export class AccountService {
   }
 
   login(model: any) {
-    return this.http.post<User>(environment.apiUrl + 'auth/signin', model).subscribe({
+    return this.http.post<User>(environment.apiUrl + 'auth/signin', model)
+    .subscribe({
         next: (user: User) => {
           this.tokenStorageService.saveToken(user.token);
           this.tokenStorageService.saveRefreshToken(user.refreshToken);
