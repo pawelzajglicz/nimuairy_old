@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Service
 @Slf4j
@@ -54,10 +56,12 @@ public class MessageServiceImpl implements MessageService {
 
 	@Override
 	public Page<Message> getLastMessages(Long conversationId, int lastMessagesNumber) {
-		return messageRepository.findByConversationIdOrderBySentAtDesc(conversationId, PageRequest.of(0, lastMessagesNumber));
+		return messageRepository.findByConversationIdOrderByOrderNumberDesc(conversationId, PageRequest.of(0, lastMessagesNumber));
 	}
 
-	private void storeMessageToUser(Message message) {
-	//	messageRepository.save(message);
+	@Override
+	public List<Message> getMessages(Long conversationId, Long from, Long to) {
+		return messageRepository.findByConversationIdAndOrderNumberGreaterThanEqualAndOrderNumberLessThanEqualOrderByOrderNumber(conversationId, from, to);
 	}
+
 }

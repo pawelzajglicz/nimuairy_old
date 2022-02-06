@@ -25,70 +25,26 @@ export class ChatComponent implements OnInit, OnDestroy {
   private webSocket: WebSocketSubject<void>;
 
   constructor(public accountService: AccountService,
-              private changeDetectorRef: ChangeDetectorRef,
-              private chatService: ChatService,
-              public contactsService: ContactsService) { }
+    private changeDetectorRef: ChangeDetectorRef,
+    private chatService: ChatService,
+    public contactsService: ContactsService) { }
 
   ngOnInit(): void {
     this.accountService.currentUser$.pipe(
-        takeUntil(this.destroyNotifier),
-        filter(Boolean))
+      takeUntil(this.destroyNotifier),
+      filter(Boolean))
       .subscribe((currentUser: User) => {
-        console.log(currentUser, 'getUserContacts');
         this.contactsService.getUserContacts(currentUser.id).subscribe(contacts => this.contacts = contacts);
       })
 
-      this.chatService.getChatTicket().subscribe((ticket: Ticket) =>
-        this.webSocket = webSocket(`${environment.webSocketUrl}messaging?ticket=` + ticket.ticket));
-
+    this.chatService.getChatTicket().subscribe((ticket: Ticket) =>
+      this.webSocket = webSocket(`${environment.webSocketUrl}messaging?ticket=` + ticket.ticket));
   }
 
   ngOnDestroy() {
     this.destroyNotifier.next()
     this.destroyNotifier.complete()
   }
-
-  showContactsList() {
-    this.isContactsListVisible = true;
-  }
-
-  startConversation(participiantId: number) {
-    console.log('start conversation with: ', participiantId);
-    if (this.isConversationWithUserNotLoaded(participiantId)) {
-
-    this.chatService.loadConversationWithUser(participiantId).subscribe((conversation: Conversation) => {
-      console.log(conversation);
-        this.conversations.push(conversation);
-        this.changeDetectorRef.markForCheck();
-
-    })
-  }
-   /* this.chatService.getChatTicket().subscribe((ticket: Ticket) => {
-      console.log({ticket})
-
-      const subject = webSocket('ws://localhost:8080/api/messaging?ticket=' + ticket.ticket);
-
-      subject.subscribe(
-         msg => console.log('message received: ', msg), // Called whenever there is a message from the server.
-         err => console.log(err), // Called if at any point WebSocket API signals some kind of error.
-         () => console.log('complete') // Called when connection is closed (for whatever reason).
-       );
-
-       setTimeout(() => {
-        subject.next({message: 'some message'});
-        console.log('sended')
-       }, 5000)
-
-    },
-    err => console.log(err))*/
-  }
-
-  private isConversationWithUserNotLoaded(participiantId: number): boolean {
-    const conversationLoaded = this.conversations.find(c => c.participants.length === 2 &&
-                  c.participants.find(participiant => participiant.id === participiantId));
-      return !conversationLoaded;
-  }
-
 
   @HostListener('click', ['$event'])
   clickInside(event: any) {
@@ -98,6 +54,43 @@ export class ChatComponent implements OnInit, OnDestroy {
   @HostListener('document:click')
   clickOutside() {
     this.isContactsListVisible = false;
+  }
+  showContactsList() {
+    this.isContactsListVisible = true;
+  }
+
+  startConversation(participiantId: number) {
+    if (this.isConversationWithUserNotLoaded(participiantId)) {
+      this.chatService.loadConversationWithUser(participiantId).subscribe((conversation: Conversation) => {
+        this.conversations.push(conversation);
+        this.changeDetectorRef.markForCheck();
+      })
+    }
+  }
+
+  /* this.chatService.getChatTicket().subscribe((ticket: Ticket) => {
+     console.log({ticket})
+
+     const subject = webSocket('ws://localhost:8080/api/messaging?ticket=' + ticket.ticket);
+
+     subject.subscribe(
+        msg => console.log('message received: ', msg), // Called whenever there is a message from the server.
+        err => console.log(err), // Called if at any point WebSocket API signals some kind of error.
+        () => console.log('complete') // Called when connection is closed (for whatever reason).
+      );
+
+      setTimeout(() => {
+       subject.next({message: 'some message'});
+       console.log('sended')
+      }, 5000)
+
+   },
+   err => console.log(err))*/
+
+  private isConversationWithUserNotLoaded(participiantId: number): boolean {
+    const conversationLoaded = this.conversations.find(c => c.participants.length === 2 &&
+      c.participants.find(participiant => participiant.id === participiantId));
+    return !conversationLoaded;
   }
 
 }

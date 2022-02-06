@@ -8,5 +8,6 @@
         (chosenToStartConversation)="startConversation($event)"
       ></nim-contacts-list>
   </div>
-    <nim-conversation-window *ngFor="let conversation of conversations" [conversation]="conversation"></nim-conversation-window>
+    <nim-conversation-window *ngFor="let conversation of conversations"
+                             [conversation]="conversation"></nim-conversation-window>
 </div>

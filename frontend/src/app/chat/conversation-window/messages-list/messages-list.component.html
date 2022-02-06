@@ -1,4 +1,5 @@
+<mat-spinner *ngIf="messages.length < totalNumberOfMessages"
+             [diameter]="loadingTopDistanceMargin"></mat-spinner>
 <div *ngFor="let message of messages">
   {{message.content}}
 </div>
-

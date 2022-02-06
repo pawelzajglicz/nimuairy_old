@@ -98,6 +98,7 @@
             <column name="id" value="1"/>
             <column name="conversation_id" value="1"/>
             <column name="sender_id" value="3"/>
+            <column name="order_number" value="1"/>
             <column name="content" value="Hi"/>
             <column name="sent_at" value="2021-01-28 09:55:01"/>
         </insert>
@@ -105,6 +106,7 @@
             <column name="id" value="2"/>
             <column name="conversation_id" value="1"/>
             <column name="sender_id" value="4"/>
+            <column name="order_number" value="2"/>
             <column name="content" value="Hello there"/>
             <column name="sent_at" value="2021-01-28 09:55:10"/>
         </insert>
@@ -112,6 +114,7 @@
             <column name="id" value="3"/>
             <column name="conversation_id" value="1"/>
             <column name="sender_id" value="3"/>
+            <column name="order_number" value="3"/>
             <column name="content" value="General Kenobi..."/>
             <column name="sent_at" value="2021-01-28 09:55:18"/>
         </insert>
@@ -119,6 +122,7 @@
             <column name="id" value="4"/>
             <column name="conversation_id" value="1"/>
             <column name="sender_id" value="3"/>
+            <column name="order_number" value="4"/>
             <column name="content" value="ęśąćż"/>
             <column name="sent_at" value="2021-01-28 09:55:20"/>
         </insert>
@@ -126,6 +130,7 @@
             <column name="id" value="5"/>
             <column name="conversation_id" value="1"/>
             <column name="sender_id" value="4"/>
+            <column name="order_number" value="5"/>
             <column name="content" value="Luke"/>
             <column name="sent_at" value="2021-01-28 09:55:24"/>
         </insert>
@@ -133,6 +138,7 @@
             <column name="id" value="6"/>
             <column name="conversation_id" value="1"/>
             <column name="sender_id" value="4"/>
+            <column name="order_number" value="6"/>
             <column name="content" value="I am your father"/>
             <column name="sent_at" value="2021-01-28 09:55:35"/>
         </insert>
@@ -140,6 +146,7 @@
             <column name="id" value="7"/>
             <column name="conversation_id" value="1"/>
             <column name="sender_id" value="3"/>
+            <column name="order_number" value="7"/>
             <column name="content" value="No, I am your father"/>
             <column name="sent_at" value="2021-01-28 09:55:40"/>
         </insert>
@@ -147,6 +154,7 @@
             <column name="id" value="8"/>
             <column name="conversation_id" value="1"/>
             <column name="sender_id" value="3"/>
+            <column name="order_number" value="8"/>
             <column name="content" value="All we have to decide is what to do with the time that is given us"/>
             <column name="sent_at" value="2021-01-28 09:55:48"/>
         </insert>
@@ -154,6 +162,7 @@
             <column name="id" value="9"/>
             <column name="conversation_id" value="1"/>
             <column name="sender_id" value="3"/>
+            <column name="order_number" value="9"/>
             <column name="content" value="Even the smallest person can change the course of the future"/>
             <column name="sent_at" value="2021-01-28 09:55:52"/>
         </insert>
@@ -161,6 +170,7 @@
             <column name="id" value="10"/>
             <column name="conversation_id" value="1"/>
             <column name="sender_id" value="4"/>
+            <column name="order_number" value="10"/>
             <column name="content" value="I would rather share one lifetime with you than face all the ages of this world alone"/>
             <column name="sent_at" value="2021-01-28 09:56:18"/>
         </insert>
@@ -168,6 +178,7 @@
             <column name="id" value="11"/>
             <column name="conversation_id" value="1"/>
             <column name="sender_id" value="4"/>
+            <column name="order_number" value="11"/>
             <column name="content" value="Who knows? Have patience. Go where you must go, and hope!"/>
             <column name="sent_at" value="2021-01-28 09:56:27"/>
         </insert>
@@ -175,8 +186,217 @@
             <column name="id" value="12"/>
             <column name="conversation_id" value="1"/>
             <column name="sender_id" value="3"/>
+            <column name="order_number" value="12"/>
             <column name="content" value="You are the luckiest, the canniest, and the most reckless man I ever knew."/>
             <column name="sent_at" value="2021-01-28 09:57:19"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="13"/>
+            <column name="conversation_id" value="1"/>
+            <column name="sender_id" value="3"/>
+            <column name="order_number" value="13"/>
+            <column name="content" value="You don't even think to call me Godfather. Instead, you come into my house on the day my daughter is to be married, and you ask me to do murder for money"/>
+            <column name="sent_at" value="2021-01-28 09:57:21"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="14"/>
+            <column name="conversation_id" value="1"/>
+            <column name="sender_id" value="4"/>
+            <column name="order_number" value="14"/>
+            <column name="content" value="Frankly, my dear, I don't give a damn."/>
+            <column name="sent_at" value="2021-01-28 09:57:33"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="15"/>
+            <column name="conversation_id" value="1"/>
+            <column name="sender_id" value="4"/>
+            <column name="order_number" value="15"/>
+            <column name="content" value="May the Force be with you."/>
+            <column name="sent_at" value="2021-01-28 09:57:34"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="16"/>
+            <column name="conversation_id" value="1"/>
+            <column name="sender_id" value="4"/>
+            <column name="order_number" value="16"/>
+            <column name="content" value="I love the smell of napalm in the morning."/>
+            <column name="sent_at" value="2021-01-28 09:57:43"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="17"/>
+            <column name="conversation_id" value="1"/>
+            <column name="sender_id" value="3"/>
+            <column name="order_number" value="17"/>
+            <column name="content" value="Love means never having to say you're sorry."/>
+            <column name="sent_at" value="2021-01-28 09:57:53"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="18"/>
+            <column name="conversation_id" value="1"/>
+            <column name="sender_id" value="3"/>
+            <column name="order_number" value="18"/>
+            <column name="content" value="Bond. James Bond."/>
+            <column name="sent_at" value="2021-01-28 09:58:03"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="19"/>
+            <column name="conversation_id" value="1"/>
+            <column name="sender_id" value="4"/>
+            <column name="order_number" value="19"/>
+            <column name="content" value="I'll be back."/>
+            <column name="sent_at" value="2021-01-28 09:58:13"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="20"/>
+            <column name="conversation_id" value="1"/>
+            <column name="sender_id" value="4"/>
+            <column name="order_number" value="20"/>
+            <column name="content" value="My mama always said life was like a box of chocolates. You never know what you're gonna get."/>
+            <column name="sent_at" value="2021-01-28 09:58:18"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="21"/>
+            <column name="conversation_id" value="1"/>
+            <column name="sender_id" value="3"/>
+            <column name="order_number" value="21"/>
+            <column name="content" value="We rob banks."/>
+            <column name="sent_at" value="2021-01-28 09:58:27"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="22"/>
+            <column name="conversation_id" value="1"/>
+            <column name="sender_id" value="3"/>
+            <column name="order_number" value="22"/>
+            <column name="content" value="I see dead people."/>
+            <column name="sent_at" value="2021-01-28 09:58:33"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="23"/>
+            <column name="conversation_id" value="1"/>
+            <column name="sender_id" value="4"/>
+            <column name="order_number" value="23"/>
+            <column name="content" value="Houston, we have a problem."/>
+            <column name="sent_at" value="2021-01-28 09:58:44"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="24"/>
+            <column name="conversation_id" value="1"/>
+            <column name="sender_id" value="4"/>
+            <column name="order_number" value="24"/>
+            <column name="content" value="Keep your friends close, but your enemies closer."/>
+            <column name="sent_at" value="2021-01-28 09:58:45"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="25"/>
+            <column name="conversation_id" value="5"/>
+            <column name="sender_id" value="3"/>
+            <column name="order_number" value="1"/>
+            <column name="content" value="sender 3, receiver 5, order number 1"/>
+            <column name="sent_at" value="2021-01-28 09:58:45"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="26"/>
+            <column name="conversation_id" value="5"/>
+            <column name="sender_id" value="5"/>
+            <column name="order_number" value="2"/>
+            <column name="content" value="sender 5, receiver 3, order number 2"/>
+            <column name="sent_at" value="2021-01-28 09:58:45"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="27"/>
+            <column name="conversation_id" value="5"/>
+            <column name="sender_id" value="5"/>
+            <column name="order_number" value="3"/>
+            <column name="content" value="sender 5, receiver 3, order number 3"/>
+            <column name="sent_at" value="2021-01-28 09:58:45"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="28"/>
+            <column name="conversation_id" value="5"/>
+            <column name="sender_id" value="5"/>
+            <column name="order_number" value="4"/>
+            <column name="content" value="sender 5, receiver 3, order number 4"/>
+            <column name="sent_at" value="2021-01-28 09:58:45"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="29"/>
+            <column name="conversation_id" value="5"/>
+            <column name="sender_id" value="3"/>
+            <column name="order_number" value="5"/>
+            <column name="content" value="sender 3, receiver 5, order number 5"/>
+            <column name="sent_at" value="2021-01-28 09:58:45"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="30"/>
+            <column name="conversation_id" value="5"/>
+            <column name="sender_id" value="5"/>
+            <column name="order_number" value="6"/>
+            <column name="content" value="sender 5, receiver 3, order number 6"/>
+            <column name="sent_at" value="2021-01-28 09:58:45"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="31"/>
+            <column name="conversation_id" value="5"/>
+            <column name="sender_id" value="3"/>
+            <column name="order_number" value="7"/>
+            <column name="content" value="sender 3, receiver 5, order number 7"/>
+            <column name="sent_at" value="2021-01-28 09:58:45"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="32"/>
+            <column name="conversation_id" value="5"/>
+            <column name="sender_id" value="5"/>
+            <column name="order_number" value="8"/>
+            <column name="content" value="sender 5, receiver 3, order number 8"/>
+            <column name="sent_at" value="2021-01-28 09:58:45"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="33"/>
+            <column name="conversation_id" value="5"/>
+            <column name="sender_id" value="3"/>
+            <column name="order_number" value="9"/>
+            <column name="content" value="sender 3, receiver 5, order number 9"/>
+            <column name="sent_at" value="2021-01-28 09:58:45"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="34"/>
+            <column name="conversation_id" value="5"/>
+            <column name="sender_id" value="3"/>
+            <column name="order_number" value="10"/>
+            <column name="content" value="sender 3, receiver 5, order number 10"/>
+            <column name="sent_at" value="2021-01-28 09:58:45"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="35"/>
+            <column name="conversation_id" value="5"/>
+            <column name="sender_id" value="3"/>
+            <column name="order_number" value="11"/>
+            <column name="content" value="sender 3, receiver 5, order number 11"/>
+            <column name="sent_at" value="2021-01-28 09:58:45"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="36"/>
+            <column name="conversation_id" value="5"/>
+            <column name="sender_id" value="3"/>
+            <column name="order_number" value="12"/>
+            <column name="content" value="sender 3, receiver 5, order number 12"/>
+            <column name="sent_at" value="2021-01-28 09:58:45"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="37"/>
+            <column name="conversation_id" value="5"/>
+            <column name="sender_id" value="5"/>
+            <column name="order_number" value="13"/>
+            <column name="content" value="sender 5, receiver 3, order number 13"/>
+            <column name="sent_at" value="2021-01-28 09:58:45"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="id" value="38"/>
+            <column name="conversation_id" value="5"/>
+            <column name="sender_id" value="3"/>
+            <column name="order_number" value="13"/>
+            <column name="content" value="sender 3, receiver 5, order number 14"/>
+            <column name="sent_at" value="2021-01-28 09:58:45"/>
         </insert>
     </changeSet>
 

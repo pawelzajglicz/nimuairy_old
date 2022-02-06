@@ -4,8 +4,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
+import { ChatComponent } from './chat/chat.component';
+import { ContactsListComponent } from './chat/contacts-list/contacts-list.component';
+import { ConversationWindowComponent } from './chat/conversation-window/conversation-window.component';
+import { ExtractOtherNamesPipe } from './chat/conversation-window/extract-other-names.pipe';
+import { MessagesListComponent } from './chat/conversation-window/messages-list/messages-list.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
@@ -18,28 +24,23 @@ import { NotificationModule } from './notification-module/notification.module';
 import { RegisterComponent } from './register/register.component';
 import { UnderConstructionComponent } from './under-construction/under-construction.component';
 import { UpperPanelComponent } from './upper-panel/upper-panel.component';
-import { ChatComponent } from './chat/chat.component';
-import { ContactsListComponent } from './chat/contacts-list/contacts-list.component';
-import { ConversationWindowComponent } from './chat/conversation-window/conversation-window.component';
-import { ExtractOtherNamesPipe } from './chat/conversation-window/extract-other-names.pipe';
-import { MessagesListComponent } from './chat/conversation-window/messages-list/messages-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ChatComponent,
+    ContactsListComponent,
+    ConversationWindowComponent,
+    ExtractOtherNamesPipe,
     HomeComponent,
     LoginComponent,
+    MessagesListComponent,
     NavigationComponent,
     NotFoundComponent,
     RegisterComponent,
     ServerErrorComponent,
     UnderConstructionComponent,
-    UpperPanelComponent,
-    ChatComponent,
-    ContactsListComponent,
-    ConversationWindowComponent,
-    ExtractOtherNamesPipe,
-    MessagesListComponent
+    UpperPanelComponent
   ],
   imports: [
     AppRoutingModule,
@@ -48,6 +49,7 @@ import { MessagesListComponent } from './chat/conversation-window/messages-list/
     FormsModule,
     HttpClientModule,
     MatMenuModule,
+    MatProgressSpinnerModule,
     NotificationModule,
     ReactiveFormsModule
   ],

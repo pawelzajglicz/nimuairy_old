@@ -16,6 +16,9 @@
             <column name="sender_id" type="int8">
                 <constraints nullable="false"/>
             </column>
+            <column name="order_number" type="int8">
+                <constraints nullable="false"/>
+            </column>
             <column name="content" type="varchar(2000)">
                 <constraints nullable="false"/>
             </column>

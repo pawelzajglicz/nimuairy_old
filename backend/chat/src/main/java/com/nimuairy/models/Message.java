@@ -27,6 +27,9 @@ public class Message implements Serializable {
 	@Column(name="sender_id")
 	private Long senderId;
 
+	@Column(name="order_number")
+	private Long orderNumber;
+
 	@Column(name="content")
 	private String content;
 
