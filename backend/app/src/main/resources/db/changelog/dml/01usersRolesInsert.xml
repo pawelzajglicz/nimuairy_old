@@ -1,11 +1,9 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd
-      http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
 
-    <changeSet id="dml1" author="pawel">
+    <changeSet id="dml1a" author="pawel">
         <insert tableName="roles">
             <column name="id" valueComputed="1"/>
             <column name="name" value="ROLE_USER"/>
@@ -18,6 +16,10 @@
             <column name="id" valueComputed="3"/>
             <column name="name" value="ROLE_ADMIN"/>
         </insert>
+    </changeSet>
+
+    <changeSet id="dml1b" author="pawel">
+        <sql dbms="postgresql">ALTER SEQUENCE nimuairy.roles_id_seq RESTART WITH 4</sql>
     </changeSet>
 
 </databaseChangeLog>

@@ -1,3 +1,6 @@
+chat:
+  kafka-topic: messages
+
 spring:
   kafka:
     consumer:

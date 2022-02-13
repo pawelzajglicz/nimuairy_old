@@ -1,5 +1,6 @@
-<mat-spinner *ngIf="messages.length < totalNumberOfMessages"
+<mat-spinner *ngIf="conversation.messages.length < conversation.totalMessages"
              [diameter]="loadingTopDistanceMargin"></mat-spinner>
-<div *ngFor="let message of messages">
+
+<div *ngFor="let message of conversation.messages; trackBy:trackByMessageId">
   {{message.content}}
 </div>

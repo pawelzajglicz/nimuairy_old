@@ -2,25 +2,31 @@ package com.nimuairy.ticket;
 
 import com.nimuairy.auth.models.User;
 import com.nimuairy.auth.security.services.UserService;
-import com.nimuairy.cache.CacheRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @AllArgsConstructor
 @Service
-public class TicketServiceImpl {
+public class TicketServiceImpl implements TicketService {
 
+	TicketRepository ticketRepository;
 	UserService userService;
-	CacheRepository cacheRepository;
 
+	@Override
 	public TicketResponse generateTicket() {
 
 		User user = userService.currentUser();
-		String ticket = UUID.randomUUID().toString();
-		cacheRepository.putTicket(ticket, user.getId());
+		String ticketId = UUID.randomUUID().toString();
+		ticketRepository.save(new Ticket(ticketId, user.getId()));
 
-		return new TicketResponse(ticket);
+		return new TicketResponse(ticketId);
+	}
+
+	@Override
+	public Optional<Long> getUserIdByAccessToken(String token) {
+		return ticketRepository.findById(token).map(Ticket::getUserId);
 	}
 }

@@ -1,9 +1,7 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd
-      http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
 
     <changeSet id="dml2a" author="pawel">
         <insert tableName="users">
@@ -51,6 +49,10 @@
     </changeSet>
 
     <changeSet id="dml2b" author="pawel">
+        <sql dbms="postgresql">ALTER SEQUENCE nimuairy.users_id_seq RESTART WITH 8</sql>
+    </changeSet>
+
+    <changeSet id="dml2c" author="pawel">
         <insert tableName="users_roles">
             <column name="user_id" valueComputed="1"/>
             <column name="role_id" valueComputed="3"/>

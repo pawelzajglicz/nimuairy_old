@@ -1,3 +1,6 @@
+chat:
+  kafka-topic: messages
+
 jwt:
   expirationMs: 604800000
   refreshExpirationMs: 604800000

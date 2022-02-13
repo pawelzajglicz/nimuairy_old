@@ -1,21 +1,19 @@
-package com.nimuairy.models;
+package com.nimuairy.conversation;
 
 import com.nimuairy.auth.models.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Set;
 
-@Entity
-@Data
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@Entity
+@Getter
+@NoArgsConstructor
+@Setter
 @Table(name = "conversations", schema = "nimuairy")
 public class Conversation implements Serializable {
 
@@ -23,14 +21,14 @@ public class Conversation implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@Column(name = "createdAt")
+	private Instant createdAt;
+
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "users_conversations",
 			   schema = "nimuairy",
 			   joinColumns = @JoinColumn(name = "conversation_id"),
 			   inverseJoinColumns = @JoinColumn(name = "user_id"))
 	Set<User> participants;
-
-	@Column(name = "createdAt")
-	private Instant createdAt;
 
 }

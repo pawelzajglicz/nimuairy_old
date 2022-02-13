@@ -9,6 +9,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AppComponent } from './app.component';
 import { ChatComponent } from './chat/chat.component';
 import { ContactsListComponent } from './chat/contacts-list/contacts-list.component';
+import { ConversationInputComponent } from './chat/conversation-window/conversation-input/conversation-input.component';
 import { ConversationWindowComponent } from './chat/conversation-window/conversation-window.component';
 import { ExtractOtherNamesPipe } from './chat/conversation-window/extract-other-names.pipe';
 import { MessagesListComponent } from './chat/conversation-window/messages-list/messages-list.component';
@@ -30,6 +31,7 @@ import { UpperPanelComponent } from './upper-panel/upper-panel.component';
     AppComponent,
     ChatComponent,
     ContactsListComponent,
+    ConversationInputComponent,
     ConversationWindowComponent,
     ExtractOtherNamesPipe,
     HomeComponent,

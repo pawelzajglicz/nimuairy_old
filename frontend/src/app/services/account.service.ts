@@ -1,9 +1,11 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http'
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
-import {BehaviorSubject, ReplaySubject} from 'rxjs';
+import {BehaviorSubject} from 'rxjs';
 import {map, tap} from 'rxjs/operators'
+
 import {environment} from 'src/environments/environment';
+import { ChatService } from '../chat/chat.service';
 import {User} from '../model/user';
 import {NotificationService} from '../notification-module/notification.service';
 import {TokenStorageService} from '../services/token-storage.service';
@@ -20,7 +22,8 @@ export class AccountService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient,
+  constructor(private chatService: ChatService,
+              private http: HttpClient,
               private notificationService: NotificationService,
               private router: Router,
               private tokenStorageService: TokenStorageService) {
@@ -29,8 +32,6 @@ export class AccountService {
                 if (!!savedUser) {
                   this.currentUserSource.next(savedUser);
                 }
-
-             //   setInterval(() => console.log(this.currentUserSource.value), 3000)
               }
 
   getCurrentUser() {
@@ -56,6 +57,7 @@ export class AccountService {
   logout() {
     this.tokenStorageService.signOut();
     this.currentUserSource.next(null);
+    this.chatService.endChat();
   }
 
   refreshToken(token: string) {

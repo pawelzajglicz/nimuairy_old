@@ -1,6 +1,6 @@
-package com.nimuairy;
+package com.nimuairy.conversation;
 
-import com.nimuairy.models.Conversation;
+import com.nimuairy.conversation.Conversation;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 

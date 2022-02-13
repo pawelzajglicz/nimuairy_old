@@ -1,7 +1,9 @@
 package com.nimuairy;
 
-import com.nimuairy.dtos.LoadConversationDto;
-import com.nimuairy.models.Message;
+import com.nimuairy.conversation.ConversationServiceImpl;
+import com.nimuairy.conversation.LoadConversationDto;
+import com.nimuairy.message.MessageService;
+import com.nimuairy.message.Message;
 import com.nimuairy.ticket.TicketResponse;
 import com.nimuairy.ticket.TicketServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -16,9 +18,9 @@ import java.util.List;
 @RequestMapping("/api/chat")
 public class ChatController {
 
-	final TicketServiceImpl ticketService;
-	final ConversationServiceImpl conversationService;
-	final MessageService messageService;
+	private final TicketServiceImpl ticketService;
+	private final ConversationServiceImpl conversationService;
+	private final MessageService messageService;
 
 	@GetMapping("/tickets")
 	public ResponseEntity<TicketResponse> getChatTicket() {

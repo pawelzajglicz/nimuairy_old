@@ -1,11 +1,9 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd
-      http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
 
-    <changeSet id="dml3" author="pawel">
+    <changeSet id="dml3a" author="pawel">
         <insert tableName="contacts">
             <column name="id" valueComputed="1"/>
             <column name="first_user_id" valueComputed="3"/>
@@ -48,6 +46,10 @@
             <column name="second_user_id" value="6"/>
             <column name="connected_at" value="2021-01-28 09:55:01"/>
         </insert>
+    </changeSet>
+
+    <changeSet id="dml3b" author="pawel">
+        <sql dbms="postgresql">ALTER SEQUENCE nimuairy.contacts_id_seq RESTART WITH 8</sql>
     </changeSet>
 
 </databaseChangeLog>

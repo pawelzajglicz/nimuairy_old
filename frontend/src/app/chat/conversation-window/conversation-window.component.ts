@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { exhaustMap, Subject } from 'rxjs';
+
+import { AccountService } from 'src/app/services/account.service';
 import { MessagesListComponent } from './messages-list/messages-list.component';
 import { ChatService } from '../chat.service';
 import { Conversation } from '../models/conversation';
@@ -16,14 +18,19 @@ export class ConversationWindowComponent implements OnInit {
   @ViewChild(MessagesListComponent) messagesList: MessagesListComponent;
   loadMoreMessages: Subject<void> = new Subject<void>();
 
-  constructor(private changeDetectorRef: ChangeDetectorRef,
-    private chatService: ChatService) { }
+  constructor(private accountService: AccountService,
+              private changeDetectorRef: ChangeDetectorRef,
+              private chatService: ChatService) { }
 
   ngOnInit(): void {
     this.loadMoreMessages
       .pipe(
         exhaustMap(() => this.chatService.loadConversationMoreMessages(this.conversation.conversationId))
       )
-      .subscribe(() => this.changeDetectorRef.markForCheck())
+      .subscribe(() => this.changeDetectorRef.markForCheck());
+  }
+
+  onMessage(message: string) {
+    this.chatService.sendMessage(this.conversation, message, this.accountService.getCurrentUser().id);
   }
 }

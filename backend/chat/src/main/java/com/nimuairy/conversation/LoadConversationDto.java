@@ -1,8 +1,8 @@
-package com.nimuairy.dtos;
+package com.nimuairy.conversation;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.nimuairy.auth.models.User;
-import com.nimuairy.models.Message;
+import com.nimuairy.message.Message;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

@@ -1,8 +1,6 @@
 <div class="conversation-container">
   <span>{{conversation | extractOtherNames}}</span>
-  <nim-messages-list [messages]="conversation.messages"
-                     [totalNumberOfMessages]="conversation.totalMessages"
-                     (loadMoreMessages)="loadMoreMessages.next()"></nim-messages-list>
+  <nim-messages-list [conversation]="conversation" (loadMoreMessages)="loadMoreMessages.next()"></nim-messages-list>
 
-  <input>
+  <nim-conversation-input (newMessage)="onMessage($event)"></nim-conversation-input>
 </div>

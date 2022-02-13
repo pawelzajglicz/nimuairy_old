@@ -1,14 +1,11 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
-import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
-import { environment } from 'src/environments/environment';
 import { User } from '../model/user';
 import { AccountService } from '../services/account.service';
 import { ContactsService } from '../social-network/contacts.service';
 import { ChatService } from './chat.service';
 import { Conversation } from './models/conversation';
-import { Ticket } from './models/ticket';
 
 @Component({
   selector: 'nim-chat',
@@ -22,7 +19,6 @@ export class ChatComponent implements OnInit, OnDestroy {
   conversations: Conversation[] = []
   isContactsListVisible = false;
   private destroyNotifier = new Subject<void>();
-  private webSocket: WebSocketSubject<void>;
 
   constructor(public accountService: AccountService,
     private changeDetectorRef: ChangeDetectorRef,
@@ -33,17 +29,16 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.accountService.currentUser$.pipe(
       takeUntil(this.destroyNotifier),
       filter(Boolean))
-      .subscribe((currentUser: User) => {
-        this.contactsService.getUserContacts(currentUser.id).subscribe(contacts => this.contacts = contacts);
-      })
+      .subscribe((currentUser: User) =>
+        this.contactsService.getUserContacts(currentUser.id).subscribe(contacts => this.contacts = contacts)
+      );
 
-    this.chatService.getChatTicket().subscribe((ticket: Ticket) =>
-      this.webSocket = webSocket(`${environment.webSocketUrl}messaging?ticket=` + ticket.ticket));
+    this.chatService.startChat();
   }
 
   ngOnDestroy() {
-    this.destroyNotifier.next()
-    this.destroyNotifier.complete()
+    this.destroyNotifier.next();
+    this.destroyNotifier.complete();
   }
 
   @HostListener('click', ['$event'])
@@ -55,6 +50,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   clickOutside() {
     this.isContactsListVisible = false;
   }
+
   showContactsList() {
     this.isContactsListVisible = true;
   }
@@ -68,29 +64,9 @@ export class ChatComponent implements OnInit, OnDestroy {
     }
   }
 
-  /* this.chatService.getChatTicket().subscribe((ticket: Ticket) => {
-     console.log({ticket})
-
-     const subject = webSocket('ws://localhost:8080/api/messaging?ticket=' + ticket.ticket);
-
-     subject.subscribe(
-        msg => console.log('message received: ', msg), // Called whenever there is a message from the server.
-        err => console.log(err), // Called if at any point WebSocket API signals some kind of error.
-        () => console.log('complete') // Called when connection is closed (for whatever reason).
-      );
-
-      setTimeout(() => {
-       subject.next({message: 'some message'});
-       console.log('sended')
-      }, 5000)
-
-   },
-   err => console.log(err))*/
-
   private isConversationWithUserNotLoaded(participiantId: number): boolean {
     const conversationLoaded = this.conversations.find(c => c.participants.length === 2 &&
       c.participants.find(participiant => participiant.id === participiantId));
     return !conversationLoaded;
   }
-
 }

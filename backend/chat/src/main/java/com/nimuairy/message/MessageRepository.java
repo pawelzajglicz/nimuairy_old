@@ -1,6 +1,5 @@
-package com.nimuairy;
+package com.nimuairy.message;
 
-import com.nimuairy.models.Message;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
