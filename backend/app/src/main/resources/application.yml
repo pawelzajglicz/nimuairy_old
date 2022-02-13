@@ -1,5 +1,7 @@
 chat:
+  broker: rabbit
   kafka-topic: messages
+  rabbitmq-queue: messages
 
 jwt:
   expirationMs: 604800000

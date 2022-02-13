@@ -5,14 +5,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nimuairy.message.Message;
 import io.netty.handler.codec.MessageAggregationException;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+@ConditionalOnProperty(value = "chat.broker",
+					   havingValue = "kafka")
 @Service
 public class MessageSenderKafka implements MessageSender {
 
 	@Value("${chat.kafka-topic}")
-	private String kafkaChatTopic;
+	private String topicName;
 
 	private final KafkaTemplate<String, String> kafkaTemplate;
 	private final ObjectMapper objectMapper;
@@ -29,7 +32,7 @@ public class MessageSenderKafka implements MessageSender {
 	@Override
 	public void send(Message message) {
 		try {
-			send(kafkaChatTopic, objectMapper.writeValueAsString(message));
+			send(topicName, objectMapper.writeValueAsString(message));
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 			throw new MessageAggregationException();
