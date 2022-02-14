@@ -1,0 +1,14 @@
+:host {
+  align-items: end;
+  background-color: var(--dark-blue);
+  border-top-left-radius: 0.75em;
+  border-top-right-radius: 0.75em;
+  color: var(--light-gray);
+  display: flex;
+  justify-content: space-between;
+  padding: 0.3em 0.5em 0.3em 0.5em;
+}
+
+.buttons {
+  display: flex;
+}

@@ -34,6 +34,8 @@ export class ChatComponent implements OnInit, OnDestroy {
       );
 
     this.chatService.startChat();
+
+    setTimeout(() => this.startConversation(3), 100);
   }
 
   ngOnDestroy() {

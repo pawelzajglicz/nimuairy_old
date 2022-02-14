@@ -1,5 +1,6 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, HostListener, Output, EventEmitter, ChangeDetectorRef, OnInit } from '@angular/core';
 import { filter } from 'rxjs';
+import { AccountService } from 'src/app/services/account.service';
 
 import { ChatService } from '../../chat.service';
 import { Conversation } from '../../models/conversation';
@@ -18,7 +19,10 @@ export class MessagesListComponent implements OnInit, AfterViewInit {
 
   loadingTopDistanceMargin = 40; // px
 
-  constructor(public elementRef: ElementRef, private changeDetectorRef: ChangeDetectorRef, private chatService: ChatService) { }
+  constructor(public accountService: AccountService,
+              private changeDetectorRef: ChangeDetectorRef,
+              private chatService: ChatService,
+              private elementRef: ElementRef) { }
 
   ngOnInit() {
 

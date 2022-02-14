@@ -25,6 +25,7 @@ import { NotificationModule } from './notification-module/notification.module';
 import { RegisterComponent } from './register/register.component';
 import { UnderConstructionComponent } from './under-construction/under-construction.component';
 import { UpperPanelComponent } from './upper-panel/upper-panel.component';
+import { ConversationWindowHeaderComponent } from './chat/conversation-window/conversation-window-header/conversation-window-header.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { UpperPanelComponent } from './upper-panel/upper-panel.component';
     RegisterComponent,
     ServerErrorComponent,
     UnderConstructionComponent,
-    UpperPanelComponent
+    UpperPanelComponent,
+    ConversationWindowHeaderComponent
   ],
   imports: [
     AppRoutingModule,

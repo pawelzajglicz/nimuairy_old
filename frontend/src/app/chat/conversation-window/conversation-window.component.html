@@ -1,5 +1,5 @@
 <div class="conversation-container">
-  <span>{{conversation | extractOtherNames}}</span>
+  <nim-conversation-window-header [title]="conversation | extractOtherNames"></nim-conversation-window-header>
   <nim-messages-list [conversation]="conversation" (loadMoreMessages)="loadMoreMessages.next()"></nim-messages-list>
 
   <nim-conversation-input (newMessage)="onMessage($event)"></nim-conversation-input>
