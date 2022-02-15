@@ -53,6 +53,13 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.isContactsListVisible = false;
   }
 
+  closeConversationWindow(conversationId: number) {
+    const conversationIndex = this.conversations.findIndex(conversation => conversation.conversationId === conversationId);
+    if (conversationIndex !== -1) {
+      this.conversations.splice(conversationIndex, 1);
+    }
+  }
+
   showContactsList() {
     this.isContactsListVisible = true;
   }

@@ -9,5 +9,6 @@
       ></nim-contacts-list>
   </div>
     <nim-conversation-window *ngFor="let conversation of conversations"
-                             [conversation]="conversation"></nim-conversation-window>
+                             [conversation]="conversation"
+                             (closeEvent)="closeConversationWindow(conversation.conversationId)"></nim-conversation-window>
 </div>

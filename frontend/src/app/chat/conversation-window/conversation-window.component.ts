@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { exhaustMap, Subject } from 'rxjs';
 
 import { AccountService } from 'src/app/services/account.service';
@@ -15,8 +15,11 @@ import { Conversation } from '../models/conversation';
 export class ConversationWindowComponent implements OnInit {
 
   @Input() conversation: Conversation;
+  @Output() closeEvent = new EventEmitter<void>();
   @ViewChild(MessagesListComponent) messagesList: MessagesListComponent;
   loadMoreMessages: Subject<void> = new Subject<void>();
+
+  minimized = false;
 
   constructor(private accountService: AccountService,
               private changeDetectorRef: ChangeDetectorRef,
@@ -28,6 +31,10 @@ export class ConversationWindowComponent implements OnInit {
         exhaustMap(() => this.chatService.loadConversationMoreMessages(this.conversation.conversationId))
       )
       .subscribe(() => this.changeDetectorRef.markForCheck());
+  }
+
+  onCloseEvent() {
+      this.closeEvent.emit();
   }
 
   onMessage(message: string) {

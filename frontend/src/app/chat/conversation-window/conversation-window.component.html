@@ -1,6 +1,11 @@
 <div class="conversation-container">
-  <nim-conversation-window-header [title]="conversation | extractOtherNames"></nim-conversation-window-header>
-  <nim-messages-list [conversation]="conversation" (loadMoreMessages)="loadMoreMessages.next()"></nim-messages-list>
-
-  <nim-conversation-input (newMessage)="onMessage($event)"></nim-conversation-input>
+  <nim-conversation-window-header [title]="conversation | extractOtherNames"
+                                  (closeEvent)="onCloseEvent()"
+                                  [(minimized)]="minimized"></nim-conversation-window-header>
+  <div class="conversation-body"
+       [ngClass]="{'minimized' : minimized}">
+    <nim-messages-list [conversation]="conversation"
+                       (loadMoreMessages)="loadMoreMessages.next()"></nim-messages-list>
+    <nim-conversation-input (newMessage)="onMessage($event)"></nim-conversation-input>
+  </div>
 </div>

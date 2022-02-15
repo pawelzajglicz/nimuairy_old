@@ -1,6 +1,18 @@
-.conversation-container {
-  display: flex;
-  flex-direction: column;
-  max-height: 100%;
+.conversation {
+
+  &-body {
+    display: contents;
+  }
+
+  &-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: end;
+    max-height: 100%;
+  }
 }
 
+.minimized {
+   display: none;
+}
