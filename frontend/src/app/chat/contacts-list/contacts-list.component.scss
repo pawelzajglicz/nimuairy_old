@@ -1,7 +1,24 @@
 :host {
   background-color: rgb(38, 214, 205);
+  border-radius: 0.5em;
+  bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  height: fit-content;
+  max-height: 90vh;
+  padding: 1em 1.5em 1.5em 1em;
   position: absolute;
   right: 50px;
-  bottom: 50px;
+  width: fit-content;
+}
+
+.contact {
+
+  &:hover {
+    color: var(--purple);
+    cursor: pointer;
+    text-shadow: 1px 0px 0px  var(--purple);
+  }
 }
 

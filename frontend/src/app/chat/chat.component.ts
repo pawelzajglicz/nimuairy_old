@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
+
+import { ChatService } from './chat.service';
+import { Conversation } from './models/conversation';
 import { User } from '../model/user';
 import { AccountService } from '../services/account.service';
 import { ContactsService } from '../social-network/contacts.service';
-import { ChatService } from './chat.service';
-import { Conversation } from './models/conversation';
 
 @Component({
   selector: 'nim-chat',
@@ -34,18 +35,11 @@ export class ChatComponent implements OnInit, OnDestroy {
       );
 
     this.chatService.startChat();
-
-    setTimeout(() => this.startConversation(3), 100);
   }
 
   ngOnDestroy() {
     this.destroyNotifier.next();
     this.destroyNotifier.complete();
-  }
-
-  @HostListener('click', ['$event'])
-  clickInside(event: any) {
-    event.stopPropagation();
   }
 
   @HostListener('document:click')
@@ -60,8 +54,9 @@ export class ChatComponent implements OnInit, OnDestroy {
     }
   }
 
-  showContactsList() {
+  showContactsList(event: Event) {
     this.isContactsListVisible = true;
+    event.stopPropagation();
   }
 
   startConversation(participiantId: number) {

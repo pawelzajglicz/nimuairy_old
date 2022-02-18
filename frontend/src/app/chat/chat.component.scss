@@ -5,11 +5,16 @@ nim-conversation-window {
 
 .chat-add-button {
   background-color: var(--powder-pink);
-  border: none;
+  border: 0.15em solid var(--dark-blue);
   border-radius: 1.5em;
   font-size: 1em;
-  height: 2.5em;
-  width: 2.5em;
+  height: 3em;
+  width: 3em;
+
+  &:hover {
+    cursor: pointer;
+    filter: hue-rotate(180deg);
+  }
 }
 
 .chat-container {
