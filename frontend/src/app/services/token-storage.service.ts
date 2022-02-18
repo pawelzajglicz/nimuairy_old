@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import { User } from '../model/user';
 import {BrowserStorageService} from '../util/browser-storage.service';
 
 const TOKEN_KEY = 'auth-token';
@@ -39,7 +40,7 @@ export class TokenStorageService {
     return this.browserStorageService.get(REFRESHTOKEN_KEY);
   }
 
-  public saveUser(user: any): void {
+  public saveUser(user: User): void {
     this.browserStorageService.set(USER_KEY, JSON.stringify(user));
   }
 

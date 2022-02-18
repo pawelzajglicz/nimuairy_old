@@ -1,0 +1,55 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="dml3a" author="pawel">
+        <insert tableName="contacts">
+            <column name="id" valueComputed="1"/>
+            <column name="first_user_id" valueComputed="3"/>
+            <column name="second_user_id" value="4"/>
+            <column name="connected_at" value="2020-10-06 15:01:10"/>
+        </insert>
+        <insert tableName="contacts">
+            <column name="id" valueComputed="2"/>
+            <column name="first_user_id" valueComputed="3"/>
+            <column name="second_user_id" value="5"/>
+            <column name="connected_at" value="2020-10-06 17:08:10"/>
+        </insert>
+        <insert tableName="contacts">
+            <column name="id" valueComputed="3"/>
+            <column name="first_user_id" valueComputed="3"/>
+            <column name="second_user_id" value="6"/>
+            <column name="connected_at" value="2020-10-06 15:01:22"/>
+        </insert>
+        <insert tableName="contacts">
+            <column name="id" valueComputed="4"/>
+            <column name="first_user_id" valueComputed="3"/>
+            <column name="second_user_id" value="7"/>
+            <column name="connected_at" value="2020-10-08 15:01:10"/>
+        </insert>
+        <insert tableName="contacts">
+            <column name="id" valueComputed="5"/>
+            <column name="first_user_id" valueComputed="4"/>
+            <column name="second_user_id" value="5"/>
+            <column name="connected_at" value="2020-10-06 15:01:10"/>
+        </insert>
+        <insert tableName="contacts">
+            <column name="id" valueComputed="6"/>
+            <column name="first_user_id" valueComputed="4"/>
+            <column name="second_user_id" value="6"/>
+            <column name="connected_at" value="2022-01-08 07:01:10"/>
+        </insert>
+        <insert tableName="contacts">
+            <column name="id" valueComputed="7"/>
+            <column name="first_user_id" valueComputed="5"/>
+            <column name="second_user_id" value="6"/>
+            <column name="connected_at" value="2021-01-28 09:55:01"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="dml3b" author="pawel">
+        <sql dbms="postgresql">ALTER SEQUENCE nimuairy.contacts_id_seq RESTART WITH 8</sql>
+    </changeSet>
+
+</databaseChangeLog>

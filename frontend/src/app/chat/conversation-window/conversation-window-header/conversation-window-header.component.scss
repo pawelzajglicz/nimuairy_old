@@ -1,0 +1,30 @@
+:host {
+  align-items: end;
+  background-color: var(--purple);
+  border-top-left-radius: 0.75em;
+  border-top-right-radius: 0.75em;
+  color: var(--powder-pink);
+  display: flex;
+  justify-content: space-between;
+  padding: 0.3em 0.5em 0.3em 0.75em;
+}
+
+button {
+  background-color: #BBBB;
+  border: none;
+  border-radius: 0.5em;
+  color: var(--dark-blue);
+  width: 2em;
+
+  &:hover {
+    background-color: #DDDB;
+    color: var(--dark-gray);
+  }
+}
+
+.buttons {
+  display: flex;
+  font-size: 0.85em;
+  gap: 0.35em;
+  padding: 0.2em;
+}

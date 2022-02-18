@@ -1,9 +1,11 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http'
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
-import {ReplaySubject} from 'rxjs';
-import {map} from 'rxjs/operators'
+import {BehaviorSubject} from 'rxjs';
+import {map, tap} from 'rxjs/operators'
+
 import {environment} from 'src/environments/environment';
+import { ChatService } from '../chat/chat.service';
 import {User} from '../model/user';
 import {NotificationService} from '../notification-module/notification.service';
 import {TokenStorageService} from '../services/token-storage.service';
@@ -13,24 +15,36 @@ import {TokenStorageService} from '../services/token-storage.service';
 })
 export class AccountService {
 
-  private currentUserSource = new ReplaySubject<User>(1);
+  private currentUserSource = new BehaviorSubject<User>(null);
   currentUser$ = this.currentUserSource.asObservable();
-  isUserLoggedIn$ = this.currentUserSource.asObservable().pipe(map(user => !!user));
+  isUserLoggedIn$ = this.currentUserSource.asObservable().pipe(map(user => !!user && Object.keys(user).length > 0));
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient,
+  constructor(private chatService: ChatService,
+              private http: HttpClient,
               private notificationService: NotificationService,
               private router: Router,
-              private tokenStorageService: TokenStorageService) { }
+              private tokenStorageService: TokenStorageService) {
+
+                const savedUser = this.tokenStorageService.getUser();
+                if (!!savedUser) {
+                  this.currentUserSource.next(savedUser);
+                }
+              }
+
+  getCurrentUser() {
+    return this.currentUserSource.value;
+  }
 
   login(model: any) {
-    return this.http.post<User>(environment.apiUrl + 'auth/signin', model).subscribe({
+    return this.http.post<User>(environment.apiUrl + 'auth/signin', model)
+    .subscribe({
         next: (user: User) => {
-          this.tokenStorageService.saveToken(JSON.stringify(user.token));
-          this.tokenStorageService.saveRefreshToken(JSON.stringify(user.refreshToken));
-          this.tokenStorageService.saveUser(JSON.stringify(user));
+          this.tokenStorageService.saveToken(user.token);
+          this.tokenStorageService.saveRefreshToken(user.refreshToken);
+          this.tokenStorageService.saveUser(user);
           this.currentUserSource.next(user);
           this.router.navigateByUrl('/home');
         },
@@ -43,6 +57,7 @@ export class AccountService {
   logout() {
     this.tokenStorageService.signOut();
     this.currentUserSource.next(null);
+    this.chatService.endChat();
   }
 
   refreshToken(token: string) {

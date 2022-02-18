@@ -5,7 +5,7 @@
 
     <changeSet id="ddl5a" author="pawel">
         <createTable tableName="refresh_tokens">
-            <column name="id" type="int8">
+            <column name="id" type="bigserial">
                 <constraints primaryKey="true"/>
             </column>
             <column name="token" type="varchar(200)">
@@ -22,7 +22,6 @@
             drop table refresh_tokens
         </rollback>
     </changeSet>
-
 
     <changeSet id="ddl5b" author="pawel">
 

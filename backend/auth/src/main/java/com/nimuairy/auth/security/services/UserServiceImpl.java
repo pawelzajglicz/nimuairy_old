@@ -63,6 +63,12 @@ public class UserServiceImpl implements UserService {
 		return createUser(signUpRequest);
 	}
 
+	@Override
+	public User currentUser() {
+		UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		return userRepository.getById(userDetails.getId());
+	}
+
 	private User createUser(SignupRequest signupRequest) {
 		return createUser(CreateUserRequest.builder()
 				.username(signupRequest.getUsername())

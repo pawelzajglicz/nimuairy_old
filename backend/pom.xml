@@ -6,6 +6,8 @@
 	<modules>
 		<module>app</module>
 		<module>auth</module>
+		<module>chat</module>
+		<module>social-network</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>

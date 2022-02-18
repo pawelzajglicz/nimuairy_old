@@ -1,0 +1,7 @@
+<input class="message-input"
+       [(ngModel)]="message"
+       (keydown.enter)="commitMessage()">
+<button class="send-button"
+        (click)="commitMessage()">
+  <i class="fas fa-paper-plane"></i>
+</button>

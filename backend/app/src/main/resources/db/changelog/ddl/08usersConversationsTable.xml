@@ -1,0 +1,32 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="ddl8a" author="pawel">
+        <createTable tableName="users_conversations">
+            <column name="user_id" type="bigserial">
+                <constraints nullable="true"/>
+            </column>
+            <column name="conversation_id" type="bigserial">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            drop table users
+        </rollback>
+    </changeSet>
+
+    <changeSet id="ddl8b" author="pawel">
+        <addPrimaryKey columnNames="user_id, conversation_id" tableName="users_conversations"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="users_conversations"
+                                 constraintName="FK_users_conversations" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users"/>
+
+        <addForeignKeyConstraint baseColumnNames="conversation_id" baseTableName="users_conversations"
+                                 constraintName="FK_conversations_users" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="conversations"/>
+    </changeSet>
+
+</databaseChangeLog>

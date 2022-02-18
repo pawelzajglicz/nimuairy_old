@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-
 @Component({
   selector: 'nim-home',
   templateUrl: './home.component.html',

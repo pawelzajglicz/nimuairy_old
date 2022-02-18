@@ -1,6 +1,11 @@
+chat:
+  broker: rabbit
+  kafka-topic: messages
+  rabbitmq-queue: messages
+
 jwt:
-  expirationMs: 86400000
-  refreshExpirationMs: 86400000
+  expirationMs: 604800000
+  refreshExpirationMs: 604800000
   secret: nimuairySecretKey
 
 management:
@@ -26,9 +31,28 @@ spring:
         hibernate:
           dialect: org.hibernate.dialect.PostgreSQLDialect
 
+  kafka:
+    consumer:
+      auto-offset-reset: earliest
+      bootstrap-servers: localhost:9092
+      group-id: nimuairy
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
   liquibase:
     change-log: classpath:/db/changelog/dbchangelog.xml
     default-schema: nimuairy
 
   profiles:
     active: dev
+
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 60000
+    time-to-live: 60000
+    password:

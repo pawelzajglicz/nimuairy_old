@@ -1,0 +1,28 @@
+nim-conversation-window {
+  height: clamp(10vh, 275px, 70vh);
+  width: clamp(10vw, 275px, 70vw);
+}
+
+.chat-add-button {
+  background-color: var(--powder-pink);
+  border: 0.15em solid var(--dark-blue);
+  border-radius: 1.5em;
+  font-size: 1em;
+  height: 3em;
+  width: 3em;
+
+  &:hover {
+    cursor: pointer;
+    filter: hue-rotate(180deg);
+  }
+}
+
+.chat-container {
+  align-items: end;
+  bottom: 1.5em;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 1em;
+  position: absolute;
+  right: 1.5em;
+}

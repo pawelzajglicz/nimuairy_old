@@ -1,0 +1,37 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="ddl6a" author="pawel">
+        <createTable tableName="contacts">
+            <column name="id" type="bigserial">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="first_user_id" type="int8">
+                <constraints nullable="true"/>
+            </column>
+            <column name="second_user_id" type="int8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="connected_at" type="timestamptz">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            drop table users
+        </rollback>
+    </changeSet>
+
+    <changeSet id="ddl6b" author="pawel">
+
+        <addForeignKeyConstraint baseColumnNames="first_user_id" baseTableName="contacts"
+                                 constraintName="FK_first_second" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users"/>
+
+        <addForeignKeyConstraint baseColumnNames="second_user_id" baseTableName="contacts"
+                                 constraintName="FK_second_first" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+
+</databaseChangeLog>

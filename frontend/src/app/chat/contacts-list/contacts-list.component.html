@@ -1,0 +1,3 @@
+<div *ngFor="let contact of contacts"
+    class="contact"
+    (click)="emitStartConversation(contact.id)">{{contact.username}}</div>

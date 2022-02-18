@@ -25,6 +25,16 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.nimuairy</groupId>
+            <artifactId>chat</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.nimuairy</groupId>
+            <artifactId>social-network</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-boot-starter</artifactId>
             <version>3.0.0</version>

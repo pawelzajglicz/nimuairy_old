@@ -1,0 +1,8 @@
+<mat-spinner *ngIf="conversation.messages.length < conversation.totalMessages"
+             [diameter]="loadingTopDistanceMargin"></mat-spinner>
+
+<div *ngFor="let message of conversation.messages; trackBy:trackByMessageId"
+     class="message"
+     [ngClass]="{'message--current-user' : message.senderId === (accountService.currentUser$ | async).id}">
+  {{message.content}}
+</div>

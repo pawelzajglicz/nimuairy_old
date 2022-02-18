@@ -12,6 +12,7 @@ public interface UserService {
 
 	JwtResponse loginUser(LoginRequest loginRequest);
 
-
 	User registerUser(SignupRequest signUpRequest);
+
+	User currentUser();
 }

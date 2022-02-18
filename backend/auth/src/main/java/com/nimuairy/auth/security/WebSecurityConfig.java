@@ -63,9 +63,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests().antMatchers("/api/auth/**").permitAll()
 				.antMatchers("/api/test/**").permitAll()
 				.antMatchers("/swagger-ui/**").permitAll()
+				//.antMatchers("/api/chat").authenticated()
+				.antMatchers("/api/contacts/**").authenticated()
+				.antMatchers("/api/chat").authenticated()
+				.antMatchers("/api/messaging").permitAll()
 				.anyRequest().authenticated();
 
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+
+		//http.cors().and().csrf().disable().headers().frameOptions().sameOrigin();
 	}
 
 	@Override

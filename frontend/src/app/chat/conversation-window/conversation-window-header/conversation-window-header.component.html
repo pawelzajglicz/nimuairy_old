@@ -1,0 +1,12 @@
+<span>{{title}}</span>
+
+<div class="buttons">
+
+  <ng-template #maximizeButton>
+    <button (click)="minimize()"><i class="fas fa-window-minimize"></i></button>
+  </ng-template>
+  <button *ngIf="minimized; else maximizeButton"
+          (click)="maximize()"><i class="fas fa-window-maximize"></i></button>
+  <button (click)="onClose()"><i class="fas fa-times"></i></button>
+
+</div>
