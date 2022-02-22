@@ -1,3 +1,0 @@
-docker run --name postgres -e POSTGRES_PASSWORD=somePassword -d -p 5432:5432 -v //d/nimuairy/postgre_data:/var/lib/postgresql/data postgres 
-
-docker run --name some-redis -d -p 6379:6379 redis

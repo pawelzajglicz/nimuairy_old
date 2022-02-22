@@ -1,0 +1,34 @@
+{
+	"queues": [
+		{
+			"name": "messages",
+			"vhost": "/",
+			"durable": true,
+			"auto_delete": false,
+			"arguments": {
+				"x-queue-type": "classic"
+			}
+		}
+	],
+	"exchanges": [
+		{
+			"name": "messages",
+			"vhost": "/",
+			"type": "direct",
+			"durable": true,
+			"auto_delete": false,
+			"internal": false,
+			"arguments": {}
+		}
+	],
+	"bindings": [
+		{
+			"source": "messages",
+			"vhost": "/",
+			"destination": "messages",
+			"destination_type": "queue",
+			"routing_key": "messages",
+			"arguments": {}
+		}
+	]
+}
