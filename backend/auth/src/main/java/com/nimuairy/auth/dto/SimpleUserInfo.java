@@ -1,7 +1,6 @@
 package com.nimuairy.auth.dto;
 
 import com.nimuairy.auth.models.User;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 

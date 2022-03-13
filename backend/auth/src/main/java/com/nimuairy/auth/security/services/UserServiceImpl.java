@@ -1,5 +1,6 @@
 package com.nimuairy.auth.security.services;
 
+import com.nimuairy.auth.dto.SimpleUserInfo;
 import com.nimuairy.auth.exception.EmailTakenException;
 import com.nimuairy.auth.exception.UsernameTakenException;
 import com.nimuairy.auth.models.ERole;
@@ -67,6 +68,14 @@ public class UserServiceImpl implements UserService {
 	public User currentUser() {
 		UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		return userRepository.getById(userDetails.getId());
+	}
+
+	@Override
+	public List<SimpleUserInfo> getUsers(List<Long> userIds) {
+		return userRepository.getByIdIn(userIds)
+				.stream()
+				.map(user -> SimpleUserInfo.userToSimpleUserInfo(user))
+				.collect(Collectors.toList());
 	}
 
 	private User createUser(SignupRequest signupRequest) {

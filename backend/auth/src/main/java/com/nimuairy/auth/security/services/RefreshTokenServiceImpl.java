@@ -62,7 +62,7 @@ public class RefreshTokenServiceImpl implements RefreshTokenService {
 				.map(this::verifyExpiration)
 				.map(RefreshToken::getUser)
 				.map(user -> {
-					String token = jwtUtils.generateTokenFromUsername(user.getUsername());
+					String token = jwtUtils.generateJwtToken(UserDetailsImpl.build(user));
 					return new TokenRefreshResponse(token, requestRefreshToken);
 				})
 				.orElseThrow(() -> new TokenRefreshException(requestRefreshToken,

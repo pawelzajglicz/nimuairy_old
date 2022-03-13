@@ -22,6 +22,12 @@ public class LoadBalancedRoutesConfig {
 				.route("nim-auth", r -> r.path("/auth/**")
 						.filters(f -> f.filter(filter))
 						.uri("lb://nim-auth"))
+				.route("nim-auth", r -> r.path("/users/**")
+						.filters(f -> f.filter(filter))
+						.uri("lb://nim-auth"))
+				.route("nim-social-network", r -> r.path("/social-network/**")
+						.filters(f -> f.filter(filter))
+						.uri("lb://nim-social-network"))
 				.build();
 	}
 }

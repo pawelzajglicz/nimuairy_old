@@ -48,16 +48,12 @@ public class AuthController {
 	@PostMapping("/signin")
 	public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
-		System.out.println("+++++++++++++++++++ signin");
-
 		return ResponseEntity.ok(userService.loginUser(loginRequest));
 	}
 
 	@ApiOperation(value = "Register user", notes = "Endpoint for creating new users")
 	@PostMapping("/signup")
 	public ResponseEntity<User> registerUser(@ApiParam(value = "signup request") @Valid @RequestBody SignupRequest signUpRequest) {
-
-		System.out.println("+++++++++++++++++++ signup");
 
 		return ResponseEntity.ok(userService.registerUser(signUpRequest));
 	}

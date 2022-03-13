@@ -13,7 +13,11 @@ public class JwtUtil {
 	private String secret;
 
 	public Claims getAllClaimsFromToken(String token) {
-		return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+
+		return Jwts.parser()
+				.setSigningKey(secret)
+				.parseClaimsJws(token.startsWith("Bearer ") ? token.substring(7) : token)
+				.getBody();
 	}
 
 	private boolean isTokenExpired(String token) {
