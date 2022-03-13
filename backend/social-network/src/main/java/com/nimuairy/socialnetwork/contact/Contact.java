@@ -1,4 +1,4 @@
-package com.nimuairy.socialnetwork;
+package com.nimuairy.socialnetwork.contact;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

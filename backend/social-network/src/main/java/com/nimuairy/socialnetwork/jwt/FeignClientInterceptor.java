@@ -1,5 +1,6 @@
-package com.nimuairy.socialnetwork;
+package com.nimuairy.socialnetwork.jwt;
 
+import com.nimuairy.socialnetwork.jwt.JWTStore;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import lombok.AllArgsConstructor;

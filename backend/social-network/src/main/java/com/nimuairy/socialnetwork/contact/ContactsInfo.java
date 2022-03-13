@@ -1,4 +1,4 @@
-package com.nimuairy.socialnetwork.dto;
+package com.nimuairy.socialnetwork.contact;
 
 public record ContactsInfo(Long id, String username) {
 }

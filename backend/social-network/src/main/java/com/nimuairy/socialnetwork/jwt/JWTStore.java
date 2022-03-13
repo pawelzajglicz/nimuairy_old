@@ -1,4 +1,4 @@
-package com.nimuairy.socialnetwork;
+package com.nimuairy.socialnetwork.jwt;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;

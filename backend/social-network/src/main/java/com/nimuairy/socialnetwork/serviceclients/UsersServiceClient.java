@@ -1,6 +1,6 @@
-package com.nimuairy.socialnetwork;
+package com.nimuairy.socialnetwork.serviceclients;
 
-import com.nimuairy.socialnetwork.dto.ContactsInfo;
+import com.nimuairy.socialnetwork.contact.ContactsInfo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

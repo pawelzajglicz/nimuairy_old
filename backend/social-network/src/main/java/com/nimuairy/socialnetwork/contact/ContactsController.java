@@ -1,6 +1,5 @@
-package com.nimuairy.socialnetwork;
+package com.nimuairy.socialnetwork.contact;
 
-import com.nimuairy.socialnetwork.dto.ContactsInfo;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

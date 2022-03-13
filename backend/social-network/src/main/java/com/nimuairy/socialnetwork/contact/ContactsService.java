@@ -1,6 +1,4 @@
-package com.nimuairy.socialnetwork;
-
-import com.nimuairy.socialnetwork.dto.ContactsInfo;
+package com.nimuairy.socialnetwork.contact;
 
 import java.util.List;
 

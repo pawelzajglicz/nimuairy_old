@@ -1,4 +1,4 @@
-package com.nimuairy.socialnetwork;
+package com.nimuairy.socialnetwork.contact;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
