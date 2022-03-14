@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "contacts", schema = "nimuairy")
+@Table(name = "contacts", schema = "nim_social_network")
 public class Contact implements Serializable {
 
 	@Id

@@ -19,3 +19,7 @@ spring:
       properties:
         hibernate:
           dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  liquibase:
+    change-log: classpath:/db/changelog/dbchangelog.xml
+    default-schema: nim_social_network
