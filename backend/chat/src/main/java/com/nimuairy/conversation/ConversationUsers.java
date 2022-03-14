@@ -11,7 +11,7 @@ import javax.persistence.*;
 @IdClass(ConversationUsersId.class)
 @NoArgsConstructor
 @Setter
-@Table(name = "users_conversations", schema = "nimuairy")
+@Table(name = "users_conversations", schema = "nim_chat")
 public class ConversationUsers {
 
 	@Id

@@ -12,7 +12,7 @@ import java.time.Instant;
 @Getter
 @NoArgsConstructor
 @Setter
-@Table(name = "messages", schema = "nimuairy")
+@Table(name = "messages", schema = "nim_chat")
 public class Message implements Serializable {
 
 	@Id

@@ -35,6 +35,10 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
+  liquibase:
+    change-log: classpath:/db/changelog/dbchangelog.xml
+    default-schema: nim_chat
+
   redis:
     host: localhost
     port: 6379

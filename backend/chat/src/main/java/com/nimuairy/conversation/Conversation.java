@@ -13,7 +13,7 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @Setter
-@Table(name = "conversations", schema = "nimuairy")
+@Table(name = "conversations", schema = "nim_chat")
 public class Conversation implements Serializable {
 
 	@Id
