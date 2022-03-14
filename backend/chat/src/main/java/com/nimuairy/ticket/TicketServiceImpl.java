@@ -1,7 +1,6 @@
 package com.nimuairy.ticket;
 
-import com.nimuairy.auth.models.User;
-import com.nimuairy.auth.security.services.UserService;
+import com.nimuairy.jwt.JWTStore;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,14 +12,13 @@ import java.util.UUID;
 public class TicketServiceImpl implements TicketService {
 
 	TicketRepository ticketRepository;
-	UserService userService;
+	JWTStore jwtStore;
 
 	@Override
 	public TicketResponse generateTicket() {
 
-		User user = userService.currentUser();
 		String ticketId = UUID.randomUUID().toString();
-		ticketRepository.save(new Ticket(ticketId, user.getId()));
+		ticketRepository.save(new Ticket(ticketId, Long.valueOf(jwtStore.loadUserId())));
 
 		return new TicketResponse(ticketId);
 	}
