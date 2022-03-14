@@ -9,7 +9,7 @@ import { User } from '../model/user';
 })
 export class ContactsService {
 
-  private baseUrl = environment.apiUrl + 'contacts/'
+  private baseUrl = environment.apiUrl + 'social-network/contacts/'
 
   constructor(private http: HttpClient) { }
 

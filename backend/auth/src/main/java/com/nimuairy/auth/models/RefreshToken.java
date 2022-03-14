@@ -11,11 +11,11 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Setter
-@Table(name = "refresh_tokens")
+@Table(name = "refresh_tokens", schema = "nim_auth")
 public class RefreshToken {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	@Column(nullable = false)

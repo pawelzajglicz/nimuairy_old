@@ -1,0 +1,33 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="ddl004a" author="pawel">
+        <createTable tableName="refresh_tokens">
+            <column name="id" type="bigserial">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="token" type="varchar(200)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="user_id" type="int8">
+                <constraints nullable="true"/>
+            </column>
+            <column name="expiry_date" type="timestamptz">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <rollback>
+            drop table refresh_tokens
+        </rollback>
+    </changeSet>
+
+    <changeSet id="ddl004b" author="pawel">
+
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="refresh_tokens"
+                                 constraintName="FK_users_roles" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+
+</databaseChangeLog>

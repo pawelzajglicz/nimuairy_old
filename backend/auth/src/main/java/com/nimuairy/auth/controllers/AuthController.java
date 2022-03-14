@@ -31,7 +31,7 @@ import javax.validation.Valid;
 import java.util.Date;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("/api/auth")
+@RequestMapping("/auth")
 @RequiredArgsConstructor
 @RestController
 @Slf4j
