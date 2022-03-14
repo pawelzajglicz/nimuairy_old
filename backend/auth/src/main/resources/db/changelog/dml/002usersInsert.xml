@@ -1,0 +1,90 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="dml002a" author="pawel">
+        <insert tableName="users">
+            <column name="id" valueComputed="1"/>
+            <column name="username" value="admin"/>
+            <column name="email" value="admin@nimuairy.com"/>
+            <column name="password" value="$2a$10$w0gLnIoWLn.JCVJe5N1DEuXnKNV0RpaX72fryNa22cCjbmxc.pPtW"/> <!-- admin1234 -->
+        </insert>
+        <insert tableName="users">
+            <column name="id" valueComputed="2"/>
+            <column name="username" value="mod"/>
+            <column name="email" value="mod@nimuairy.com"/>
+            <column name="password" value="$2a$10$A.Kj/IOcIjIhJC8nxDitTOE0BZbkr11q.uwEFZuYKOdz2Qg5aUL/W"/> <!-- mod123 -->
+        </insert>
+        <insert tableName="users">
+            <column name="id" valueComputed="3"/>
+            <column name="username" value="Mary"/>
+            <column name="email" value="mary@nimuairy.com"/>
+            <column name="password" value="$2a$10$YSKx9KDJV2qHpy/Z54.FQe1UEwUBF9ZtTPLN3Xb851tmq9aW6W6WO"/> <!-- mary123 -->
+        </insert>
+        <insert tableName="users">
+            <column name="id" valueComputed="4"/>
+            <column name="username" value="Jane"/>
+            <column name="email" value="jane@nimuairy.com"/>
+            <column name="password" value="$2a$10$/DnwXLe1EnxPh6gnof75feYVs/xwoS3GlDcVtWo7yuXn8mo20OHAK"/> <!-- jane123 -->
+        </insert>
+        <insert tableName="users">
+            <column name="id" valueComputed="5"/>
+            <column name="username" value="Tom"/>
+            <column name="email" value="tom@nimuairy.com"/>
+            <column name="password" value="$2a$10$0/wLmGUodn5jocTt/70TH.pAAfJwDTf9k4RWgoBAXutyZ2Rkjx9a6"/> <!-- jane123 -->
+        </insert>
+        <insert tableName="users">
+            <column name="id" valueComputed="6"/>
+            <column name="username" value="John"/>
+            <column name="email" value="john@nimuairy.com"/>
+            <column name="password" value="$2a$10$N8w9yRJnnDysdYrUBHnXjO0whG7yo/h/lb4E3VbP9vziIcWo0.8U2"/> <!-- jane123 -->
+        </insert>
+        <insert tableName="users">
+            <column name="id" valueComputed="7"/>
+            <column name="username" value="Anne"/>
+            <column name="email" value="anne@nimuairy.com"/>
+            <column name="password" value="$2a$10$CEa7hX6n6CdYJCa6lxrr/.kHs972FUDH0WyxvHut1IlD02jGYtlO."/> <!-- jane123 -->
+        </insert>
+    </changeSet>
+
+    <changeSet id="dml002b" author="pawel">
+        <sql dbms="postgresql">ALTER SEQUENCE nim_auth.users_id_seq RESTART WITH 8</sql>
+    </changeSet>
+
+    <changeSet id="dml002c" author="pawel">
+        <insert tableName="users_roles">
+            <column name="user_id" valueComputed="1"/>
+            <column name="role_id" valueComputed="3"/>
+        </insert>
+        <insert tableName="users_roles">
+            <column name="user_id" valueComputed="1"/>
+            <column name="role_id" valueComputed="2"/>
+        </insert>
+        <insert tableName="users_roles">
+            <column name="user_id" valueComputed="2"/>
+            <column name="role_id" valueComputed="2"/>
+        </insert>
+        <insert tableName="users_roles">
+            <column name="user_id" valueComputed="3"/>
+            <column name="role_id" valueComputed="1"/>
+        </insert>
+        <insert tableName="users_roles">
+            <column name="user_id" valueComputed="4"/>
+            <column name="role_id" valueComputed="1"/>
+        </insert>
+        <insert tableName="users_roles">
+            <column name="user_id" valueComputed="5"/>
+            <column name="role_id" valueComputed="1"/>
+        </insert>
+        <insert tableName="users_roles">
+            <column name="user_id" valueComputed="6"/>
+            <column name="role_id" valueComputed="1"/>
+        </insert>
+        <insert tableName="users_roles">
+            <column name="user_id" valueComputed="7"/>
+            <column name="role_id" valueComputed="1"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
