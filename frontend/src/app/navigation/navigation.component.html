@@ -6,6 +6,9 @@
     <a class="nav-link" [routerLink]="['/characters']">Characters</a>
   </li>
   <li class="nav-item" routerLinkActive="active" *ngIf="(accountService.isUserLoggedIn$ | async)">
+    <a class="nav-link" [routerLink]="['/battle']">Battle</a>
+  </li>
+  <li class="nav-item" routerLinkActive="active" *ngIf="(accountService.isUserLoggedIn$ | async)">
     <a class="nav-link" [routerLink]="['/map']">Map</a>
   </li>
   <li class="nav-item" routerLinkActive="active" *ngIf="(accountService.isUserLoggedIn$ | async)">
