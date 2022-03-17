@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Profile;
 
 @AllArgsConstructor
 @Configuration
-@Profile("local-discovery")
 public class LoadBalancedRoutesConfig {
 
 	AuthenticationFilter filter;
