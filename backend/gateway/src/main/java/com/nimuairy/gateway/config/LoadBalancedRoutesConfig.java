@@ -16,14 +16,15 @@ public class LoadBalancedRoutesConfig {
 	@Bean
 	public RouteLocator loadBalancedRoutes(RouteLocatorBuilder builder) {
 		return builder.routes()
-				.route("eureka-client", r -> r.path("/test", "/test/**")
-						.uri("lb://eureka-client"))
 				.route("nim-auth", r -> r.path("/auth/**")
 						.filters(f -> f.filter(filter))
 						.uri("lb://nim-auth"))
 				.route("nim-auth", r -> r.path("/users/**")
 						.filters(f -> f.filter(filter))
 						.uri("lb://nim-auth"))
+				.route("nim-battle", r -> r.path("/battles/**")
+						.filters(f -> f.filter(filter))
+						.uri("lb://nim-battle"))
 				.route("nim-chat", r -> r.path("/chat/**")
 						.filters(f -> f.filter(filter))
 						.uri("lb://nim-chat"))
