@@ -1,0 +1,5 @@
+<div class="field" [ngClass]="(x + y) % 2 === 0 ? 'field--light' : null">
+  <nim-character *ngIf="!!character"
+                 [character]="character"
+                 [imageUrl]="'/assets/swordsman.png'"></nim-character>
+</div>

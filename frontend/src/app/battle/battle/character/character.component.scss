@@ -1,0 +1,27 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  max-width: fit-content;
+  padding: 5%;
+  position: absolute;
+  z-index: 2;
+}
+
+img {
+  max-width: 100%;
+}
+
+progress {
+  background-color: var(--green);
+  max-width: -webkit-fill-available;
+  width: 100%;
+}
+
+.character-container {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.right-player {
+  transform: rotateY(180deg);
+}

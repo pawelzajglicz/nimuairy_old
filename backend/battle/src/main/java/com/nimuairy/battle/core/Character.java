@@ -1,5 +1,6 @@
 package com.nimuairy.battle.core;
 
+import com.nimuairy.battle.core.exceptions.PlayerSide;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,11 +11,13 @@ public abstract class Character {
 	private int currentHealth;
 	private int maxHealth;
 	private HealthState healthState;
+	private PlayerSide side;
 
-	public Character(int healthPoints) {
+	public Character(int healthPoints, PlayerSide side) {
 		currentHealth = healthPoints;
 		maxHealth = healthPoints;
 		manageHealthState();
+		this.side = side;
 	}
 
 	public void receiveDamage(int damage) {

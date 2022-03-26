@@ -23,6 +23,6 @@ nim-conversation-window {
   display: flex;
   flex-direction: row-reverse;
   gap: 1em;
-  position: absolute;
+  position: fixed;
   right: 1.5em;
 }

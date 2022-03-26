@@ -1,5 +1,7 @@
 package com.nimuairy.battle.core;
 
+import com.nimuairy.battle.core.exceptions.PlayerSide;
+
 public class BaseFieldCharacterBuilder {
 
 	private int attackPower;
@@ -7,6 +9,7 @@ public class BaseFieldCharacterBuilder {
 	private int moveRange;
 	private int xPosition;
 	private int yPosition;
+	private PlayerSide side;
 
 	public BaseFieldCharacterBuilder setAttackPower(int attackPower) {
 		this.attackPower = attackPower;
@@ -33,7 +36,12 @@ public class BaseFieldCharacterBuilder {
 		return this;
 	}
 
+	public BaseFieldCharacterBuilder setYPlayerSide(PlayerSide side) {
+		this.side = side;
+		return this;
+	}
+
 	public BaseFieldCharacter createBaseFieldCharacter() {
-		return new BaseFieldCharacter(healthPoints, moveRange, xPosition, yPosition, attackPower);
+		return new BaseFieldCharacter(healthPoints, moveRange, xPosition, yPosition, attackPower, side);
 	}
 }

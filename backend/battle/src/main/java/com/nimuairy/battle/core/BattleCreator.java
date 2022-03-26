@@ -1,8 +1,13 @@
 package com.nimuairy.battle.core;
 
+import com.nimuairy.battle.core.exceptions.PlayerSide;
+
 import java.util.HashSet;
 
 public class BattleCreator {
+
+	private static int basicXSize = 15;
+	private static int basicYSize = 11;
 
 	public static Battle createBattle(Player leftPlayer, Player rightPlayer) {
 		Battle battle = new Battle();
@@ -12,37 +17,37 @@ public class BattleCreator {
 
 		giveLeftPlayerStarterPack(leftPlayer);
 		giveRightPlayerStarterPack(rightPlayer);
-		battle.setXSize(23);
-		battle.setYSize(12);
+		battle.setXSize(basicXSize);
+		battle.setYSize(basicYSize);
 
 		return battle;
 	}
 
 	private static void giveLeftPlayerStarterPack(Player player) {
 
-		giveCommonCharacters(player);
+		giveCommonCharacters(player, PlayerSide.LEFT);
 
 		player.setFieldCharacters(new HashSet<>());
-		addBaseFieldCharacter(player, 2, 3);
-		addBaseFieldCharacter(player, 2, 5);
-		addBaseFieldCharacter(player, 2, 7);
-		addBaseFieldCharacter(player, 2, 9);
+		addBaseFieldCharacter(player, 1, 2, PlayerSide.LEFT);
+		addBaseFieldCharacter(player, 1, 4, PlayerSide.LEFT);
+		addBaseFieldCharacter(player, 1, 6, PlayerSide.LEFT);
+		addBaseFieldCharacter(player, 1, 8, PlayerSide.LEFT);
 	}
 
-	private static void giveCommonCharacters(Player player) {
-		player.setOrb(new Orb(75));
-		Wall wall = new Wall(1500, 4);
+	private static void giveCommonCharacters(Player player, PlayerSide side) {
+		player.setOrb(new Orb(75, side));
+		Wall wall = new Wall(1500, 4, side);
 		player.setWall(wall);
 
 		int wallCharacterAttack = 50;
 		int wallCharacterHealth = 200;
-		wall.setCharacterAtPosition(new BaseWallCharacter(wallCharacterHealth, wallCharacterAttack), 0);
-		wall.setCharacterAtPosition(new BaseWallCharacter(wallCharacterHealth, wallCharacterAttack), 1);
-		wall.setCharacterAtPosition(new BaseWallCharacter(wallCharacterHealth, wallCharacterAttack), 2);
-		wall.setCharacterAtPosition(new BaseWallCharacter(wallCharacterHealth, wallCharacterAttack), 3);
+		wall.setCharacterAtPosition(new BaseWallCharacter(wallCharacterHealth, wallCharacterAttack, side), 0);
+		wall.setCharacterAtPosition(new BaseWallCharacter(wallCharacterHealth, wallCharacterAttack, side), 1);
+		wall.setCharacterAtPosition(new BaseWallCharacter(wallCharacterHealth, wallCharacterAttack, side), 2);
+		wall.setCharacterAtPosition(new BaseWallCharacter(wallCharacterHealth, wallCharacterAttack, side), 3);
 	}
 
-	private static boolean addBaseFieldCharacter(Player player, int xPosition, int yPosition) {
+	private static boolean addBaseFieldCharacter(Player player, int xPosition, int yPosition, PlayerSide side) {
 		int fieldCharacterAttack = 200;
 		int fieldCharacterHealth = 500;
 		int fieldMoveRange = 3;
@@ -52,17 +57,18 @@ public class BattleCreator {
 						.setXPosition(xPosition)
 						.setYPosition(yPosition)
 						.setHealthPoints(fieldCharacterHealth)
+						.setYPlayerSide(side)
 				.createBaseFieldCharacter());
 	}
 
 	private static void giveRightPlayerStarterPack(Player player) {
 
-		giveCommonCharacters(player);
+		giveCommonCharacters(player, PlayerSide.RIGHT);
 
 		player.setFieldCharacters(new HashSet<>());
-		addBaseFieldCharacter(player, 22, 3);
-		addBaseFieldCharacter(player, 22, 5);
-		addBaseFieldCharacter(player, 22, 7);
-		addBaseFieldCharacter(player, 22, 9);
+		addBaseFieldCharacter(player, basicXSize - 2, 2, PlayerSide.RIGHT);
+		addBaseFieldCharacter(player, basicXSize - 2, 4, PlayerSide.RIGHT);
+		addBaseFieldCharacter(player, basicXSize - 2, 6, PlayerSide.RIGHT);
+		addBaseFieldCharacter(player, basicXSize - 2, 8, PlayerSide.RIGHT);
 	}
 }

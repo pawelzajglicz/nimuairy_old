@@ -2,6 +2,7 @@ package com.nimuairy.battle.core;
 
 
 import com.nimuairy.battle.core.exceptions.InvalidWallPosition;
+import com.nimuairy.battle.core.exceptions.PlayerSide;
 import lombok.Getter;
 
 import java.util.Arrays;
@@ -13,8 +14,8 @@ public class Wall extends Character {
 	private final int numberOfPositions;
 	private final List<WallCharacter> characters;
 
-	public Wall(int healthPoints, int numberOfPositions) {
-		super(healthPoints);
+	public Wall(int healthPoints, int numberOfPositions, PlayerSide side) {
+		super(healthPoints, side);
 		this.numberOfPositions = numberOfPositions;
 		characters = Arrays.asList(new WallCharacter[4]);
 	}

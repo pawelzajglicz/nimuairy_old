@@ -1,0 +1,5 @@
+<div class="character-container">
+<img src="{{imageUrl}}"
+     [ngClass]="{'right-player' : character.side === playerSide.RIGHT}">
+<progress id="file" value="{{character.currentHealth}}" max="{{character.maxHealth}}"></progress>
+</div>

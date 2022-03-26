@@ -1,7 +1,8 @@
 import { Player } from './player';
 
 export interface Battle {
-  player: Player;
+  leftPlayer: Player;
+  rightPlayer: Player;
   xSize: number;
   ySize: number;
 }
