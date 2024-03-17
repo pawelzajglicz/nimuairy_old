@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import {UntypedFormBuilder, Validators} from '@angular/forms';
 import {AccountService} from '../services/account.service';
 import {Validation} from '../util/validation';
 
@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   get f() { return this.registerForm.controls; }
 
   constructor(private accountsService: AccountService,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: UntypedFormBuilder) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
