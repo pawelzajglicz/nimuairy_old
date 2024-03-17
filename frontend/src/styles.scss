@@ -1,7 +1,6 @@
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import '~normalize.css';
-@import 'app/notification-module/notification.css';
 @import '../node_modules/@fortawesome/fontawesome-free/css/all.css';
 
 :root {
@@ -86,7 +85,7 @@ button:hover {
   cursor: pointer;
 }
 
-.custom-dialog-container .mat-dialog-container {
+.custom-dialog-container .mat-mdc-dialog-container {
   border-radius: 1.5em;
   max-height: 100%;
   overflow: hidden;
