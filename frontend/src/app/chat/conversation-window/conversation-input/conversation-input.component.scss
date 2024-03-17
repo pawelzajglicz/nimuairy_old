@@ -19,6 +19,9 @@ $border-width: 0.15em;
   border-width: $border-width 0 $border-width $border-width;
   padding-left: 0.5em;
   width: -webkit-fill-available;
+  @supports not ( width: -webkit-fill-available) {
+    width: -moz-available;
+  }
 }
 
 .send-button {

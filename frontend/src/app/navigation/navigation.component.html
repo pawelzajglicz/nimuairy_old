@@ -1,17 +1,20 @@
 <nav class="navigator">
   <li class="nav-item" routerLinkActive="active" *ngIf="(accountService.isUserLoggedIn$ | async)">
-    <a class="nav-link" [routerLink]="['/wall']">Wall</a>
+    <a class="nav-link" [routerLink]="['/wall']" content="Wall">Wall</a>
   </li>
   <li class="nav-item" routerLinkActive="active" *ngIf="(accountService.isUserLoggedIn$ | async)">
-    <a class="nav-link" [routerLink]="['/characters']">Characters</a>
+    <a class="nav-link" [routerLink]="['/characters']" content="Characters">Characters</a>
   </li>
   <li class="nav-item" routerLinkActive="active" *ngIf="(accountService.isUserLoggedIn$ | async)">
-    <a class="nav-link" [routerLink]="['/map']">Map</a>
+    <a class="nav-link" [routerLink]="['/battle']" content="Battle">Battle</a>
   </li>
   <li class="nav-item" routerLinkActive="active" *ngIf="(accountService.isUserLoggedIn$ | async)">
-    <a class="nav-link" [routerLink]="['/friends']">Friends</a>
+    <a class="nav-link" [routerLink]="['/map']" content="Map">Map</a>
+  </li>
+  <li class="nav-item" routerLinkActive="active" *ngIf="(accountService.isUserLoggedIn$ | async)">
+    <a class="nav-link" [routerLink]="['/friends']" content="Friends">Friends</a>
   </li>
   <li class="nav-item" routerLinkActive="active" *ngIf="(accountService.isUserLoggedIn$ | async) === false">
-    <a class="nav-link" [routerLink]="['/register']">Register</a>
+    <a class="nav-link" [routerLink]="['/register']" content="Register">Register</a>
   </li>
 </nav>

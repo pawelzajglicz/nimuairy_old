@@ -1,0 +1,42 @@
+:host {
+  display: inline-block;
+  width: -webkit-fill-available;
+  @supports not ( width: -webkit-fill-available) {
+    width: -moz-available;
+  }
+
+  &:before {
+    content: "";
+    float: left;
+    padding-top: 100%; 	/* initial ratio of 1:1*/
+  }
+}
+
+.field {
+  background-color: var(--green);
+  height: 100%;
+  position: relative;
+
+  &--light {
+    background-color: var(--grass-green);
+  }
+}
+
+.highlighted-move {
+  // filter: hue-rotate(45deg);
+  background-color: var(--dark-blue);
+
+  &.field--light {
+    background-color: var(--blue);
+  }
+}
+
+
+.highlighted-attack {
+  // filter: hue-rotate(45deg);
+  background-color: var(--pink);
+
+  &.field--light {
+    background-color: var(--powder-pink);
+  }
+}

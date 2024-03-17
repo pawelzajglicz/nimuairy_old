@@ -1,0 +1,14 @@
+:host {
+  background-image: url("/assets/wall.png");
+  background-size: contain;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-around;
+  min-width: 75px;
+
+  &:empty {
+    visibility: hidden;
+  }
+
+}

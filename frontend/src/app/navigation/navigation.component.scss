@@ -8,10 +8,25 @@
 .nav-item {
   display: inline-block;
   list-style-type: none;
+  text-align: center;
   margin-bottom: 4px;
 }
 
 .nav-link {
   color: var(--light-gray);
   text-decoration: none;
+
+  &:hover {
+    color: white;
+    font-weight: bold;
+  }
+
+  &::before {
+    display: block;
+    content: attr(content);
+    font-weight: bold;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
 }

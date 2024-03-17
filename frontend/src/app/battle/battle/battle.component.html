@@ -1,0 +1,5 @@
+<ng-container *ngIf="battle">
+  Current player: {{turnPlayer.name}} <button (click)="endTurn()">Skip turn</button>
+  <nim-battle-field [battle]="battle"></nim-battle-field>
+</ng-container>
+

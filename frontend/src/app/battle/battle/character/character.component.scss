@@ -1,0 +1,40 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  max-width: 100%;
+  position: absolute;
+  z-index: 2;
+
+  &[position="loose"] {
+    max-width: fit-content;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+progress {
+  background-color: var(--green);
+  max-width: -webkit-fill-available;
+  @supports not ( max-width: -webkit-fill-available) {
+    width: -moz-available;
+  }
+  width: 100%;
+}
+
+.character-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.right-player {
+  transform: rotateY(180deg);
+}
+
+.selected {
+  filter: invert(0.5);
+}

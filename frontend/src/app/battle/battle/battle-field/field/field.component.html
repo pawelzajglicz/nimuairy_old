@@ -1,0 +1,7 @@
+<div class="field-row" *ngFor="let number of dummyYArray; let i = index">
+  <ng-container *ngFor="let number of dummyXArray; let j = index">
+    <nim-field-piece [x]="j" [y]="i"
+                     [highlightedAttack]="shouldBeHighlightedAsAttack(j, i)"
+                     [highlightedMove]="shouldBeHighlightedAsMove(j, i)"></nim-field-piece>
+  </ng-container>
+</div>

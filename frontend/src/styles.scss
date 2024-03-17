@@ -23,7 +23,67 @@ html {
 }
 
 body {
-  background: radial-gradient(ellipse at right -50% bottom -50%, var(--light-gray) -100%, var(--dark-blue) 100%)
+  background: radial-gradient(ellipse at right -50% bottom -50%, var(--light-gray) -100%, var(--dark-blue) 100%);
+
+  --scroll-width: 0.65em;
+  --scroll-height: 1em;
+  &::-webkit-scrollbar {
+    width: var(--scroll-width);
+  }
+
+  &::-webkit-scrollbar-button {
+
+    // this is to prevent double button
+    &:vertical:start:increment,
+    &:vertical:end:decrement {
+      display: none;
+    }
+
+    height: var(--scroll-height);
+    background-color: var(--gray);
+    border-style: solid;
+
+    &:vertical:decrement {
+      border-width: 0 calc(var(--scroll-width) / 2) calc(var(--scroll-height) * 0.8) calc(var(--scroll-width) / 2);
+      border-color: transparent transparent black transparent;
+
+      &:hover {
+        border-color: transparent transparent var(--light-gray) transparent;
+      }
+    }
+
+    &:vertical:increment {
+      border-width: calc(var(--scroll-height) * 0.8) calc(var(--scroll-width) / 2) 0 calc(var(--scroll-width) / 2);
+      border-color: black transparent transparent transparent;
+
+      &:hover {
+        border-color: var(--light-gray) transparent transparent transparent;
+      }
+    }
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #bdb0b0;
+    border-radius: 2em;
+
+    &:hover {
+      background: var(--gray);
+    }
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(180deg, var(--light-blue) 0%, var(--dark-blue) 99%);
+    border-radius: 2em;
+    box-shadow: inset 2px 2px 5px 0 rgba(#555, 0.5);
+
+    &:hover {
+      background: var(--dark-blue);
+    }
+  }
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 .custom-dialog-container .mat-dialog-container {

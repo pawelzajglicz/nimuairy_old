@@ -1,0 +1,6 @@
+<ng-container *ngFor="let character of wall?.characters">
+  <nim-wall-character-spot [character]="character"></nim-wall-character-spot>
+</ng-container>
+<nim-character *ngIf="wall"
+               position="loose"
+               [character]="wall"></nim-character>

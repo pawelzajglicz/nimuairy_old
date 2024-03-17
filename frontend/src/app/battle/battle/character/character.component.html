@@ -1,0 +1,6 @@
+<div class="character-container"
+     (click)="onClick($event)">
+  <img src="{{imageUrl}}"
+     [ngClass]="{'right-player' : character.side === playerSide.RIGHT, 'selected': character.state !== CharacterActionState.NONE}">
+  <meter id="file" value="{{character.currentHealth}}" max="{{character.maxHealth}}"></meter>
+</div>
