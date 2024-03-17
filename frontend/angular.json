@@ -79,10 +79,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "nimuairy:build:production"
+              "buildTarget": "nimuairy:build:production"
             },
             "development": {
-              "browserTarget": "nimuairy:build:development"
+              "buildTarget": "nimuairy:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -90,7 +90,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "nimuairy:build"
+            "buildTarget": "nimuairy:build"
           }
         },
         "test": {
