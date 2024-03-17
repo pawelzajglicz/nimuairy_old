@@ -12,12 +12,12 @@ import java.util.List;
 public class Wall extends Character {
 
 	private final int numberOfPositions;
-	private final List<WallCharacter> characters;
+	private final List<Hero> hero;
 
 	public Wall(int healthPoints, int numberOfPositions, PlayerSide side) {
 		super(healthPoints, side);
 		this.numberOfPositions = numberOfPositions;
-		characters = Arrays.asList(new WallCharacter[4]);
+		hero = Arrays.asList(new Hero[4]);
 	}
 
 	public int getNumberOfPositions() {
@@ -26,22 +26,22 @@ public class Wall extends Character {
 
 	public void clearPosition(Integer position) {
 		validatePosition(position);
-		characters.set(position, null);
+		hero.set(position, null);
 	}
 
 	public void setCharacterAtPosition(WallCharacter character, Integer position) {
 		validatePosition(position);
 		removeCharacter(character);
-		characters.set(position, character);
+//		hero.set(position, character);
 	}
 
 	public void removeCharacter(WallCharacter character) {
-		for (int i = 0; i < numberOfPositions; i++) {
-			if (characters.get(i) == character) {
-				clearPosition(i);
-				break;
-			}
-		}
+//		for (int i = 0; i < numberOfPositions; i++) {
+//			if (hero.get(i) == character) {
+//				clearPosition(i);
+//				break;
+//			}
+//		}
 	}
 
 	private void validatePosition(Integer position) {

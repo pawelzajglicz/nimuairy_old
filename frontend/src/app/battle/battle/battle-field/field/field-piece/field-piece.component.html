@@ -1,4 +1,7 @@
-<div class="field" [ngClass]="(x + y) % 2 === 0 ? 'field--light' : null">
+<!-- <div class="field" [ngClass]="(x + y) % 2 === 0 ? 'field--light' : null"> -->
+<div class="field"
+     [ngClass]="{'field--light' : (x + y) % 2 === 0, 'highlighted-move': highlightedMove, 'highlighted-attack': highlightedAttack}"
+     (click)="onClick()">
   <nim-character *ngIf="!!character"
                  [character]="character"
                  [imageUrl]="'/assets/swordsman.png'"></nim-character>

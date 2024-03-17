@@ -10,11 +10,20 @@ import java.util.Set;
 @Setter
 public abstract class Player {
 
+	private String name;
 	private Orb orb;
 	private Wall wall;
 	private Set<FieldCharacter> fieldCharacters;
 
-	public List<WallCharacter> getWallCharacters() {
-		return wall.getCharacters();
+	Player() {
+
 	}
+
+	Player(String name) {
+		this.name = name;
+	}
+
+//	public List<WallCharacter> getWallCharacters() {
+//		return wall.getHero();
+//	}
 }

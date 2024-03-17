@@ -1,2 +1,5 @@
-<nim-character [character]="orb"
-               [imageUrl]="'/assets/orb.png'"></nim-character>
+<nim-character *ngIf="!!orb"
+               position="loose"
+               [character]="orb"
+               [imageUrl]="'/assets/orb.png'"
+               [stopClick]="false"></nim-character>

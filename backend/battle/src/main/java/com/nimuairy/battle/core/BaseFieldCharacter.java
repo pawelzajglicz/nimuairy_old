@@ -10,10 +10,12 @@ import lombok.Setter;
 public class BaseFieldCharacter extends FieldCharacter implements Attacking {
 
 	private int attackPower;
+	private int attackRange;
 
 	public BaseFieldCharacter(int healthPoints, int moveRange, int xPosition, int yPosition, int attackPower, PlayerSide side) {
 		super(healthPoints, moveRange, xPosition, yPosition, side);
 		this.attackPower = attackPower;
+		this.attackRange = 1;
 	}
 
 	@Override

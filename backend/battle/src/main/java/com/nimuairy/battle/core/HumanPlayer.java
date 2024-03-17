@@ -6,4 +6,8 @@ import lombok.Data;
 public class HumanPlayer extends Player {
 
 	private Long userId;
+
+	public HumanPlayer(String name) {
+		super(name);
+	}
 }

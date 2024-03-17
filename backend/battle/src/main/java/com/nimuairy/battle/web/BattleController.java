@@ -19,6 +19,6 @@ public class BattleController {
 	@GetMapping("/basic")
 	public ResponseEntity<Battle> getBasicBattle() {
 
-		return ResponseEntity.ok(BattleCreator.createBattle(new HumanPlayer(), new HumanPlayer()));
+		return ResponseEntity.ok(BattleCreator.createBattle(new HumanPlayer("Left"), new HumanPlayer("Right")));
 	}
 }

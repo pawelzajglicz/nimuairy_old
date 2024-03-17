@@ -5,7 +5,6 @@ import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 
 @AllArgsConstructor
 @Configuration
@@ -17,7 +16,7 @@ public class LoadBalancedRoutesConfig {
 	public RouteLocator loadBalancedRoutes(RouteLocatorBuilder builder) {
 		return builder.routes()
 				.route("nim-auth", r -> r.path("/auth/**")
-						.filters(f -> f.filter(filter))
+						//.filters(f -> f.filter(filter))
 						.uri("lb://nim-auth"))
 				.route("nim-auth", r -> r.path("/users/**")
 						.filters(f -> f.filter(filter))

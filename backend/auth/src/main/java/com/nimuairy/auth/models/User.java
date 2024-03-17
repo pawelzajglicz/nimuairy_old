@@ -39,6 +39,8 @@ public class User {
 	@Size(max = 120)
 	private String password;
 
+
+	// @ElementCollection
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "users_roles",
 			schema = "nim_auth",
